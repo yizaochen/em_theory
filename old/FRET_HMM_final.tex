@@ -1,0 +1,768 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% This is a (brief) model paper using the achemso class
+%% The document class accepts keyval options, which should include
+%% the target journal and optionally the macuscript tye
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[journal=jpcbfk,manuscript=article,layout=twocolumn,articletitle=true]{achemso}
+\setkeys{acs}{articletitle = true}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Place any additional packages needed here.  Only include packages
+%% which are essential, to avoid problems later.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx,bm,lineno,mathpazo}  
+\usepackage{amssymb,amsfonts,amsmath,mathtools}
+\usepackage{algorithm,algpseudocode,booktabs,dcolumn}
+\captionsetup{labelfont=bf}
+\usepackage[input-decimal-markers={.},separate-uncertainty=true,table-auto-round,scientific-notation = false,zero-decimal-to-integer=true]{siunitx}
+\DeclareMathOperator*{\tr}{tr}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\usepackage[caption=false,font=normalsize,position=top]{subfig}
+
+%\renewcommand{\arraystretch}{1.25}
+
+\usepackage[kerning,spacing,tracking]{microtype}
+\microtypecontext{spacing=nonfrench}
+\usepackage{indentfirst}
+\overfullrule=5pt
+%\linenumbers
+\usepackage[normalem]{ulem} 
+
+\usepackage{color}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% If issues arise when submitting your manuscript, you may want to
+%% un-comment the next line.  This provides information on the
+%% version of every file you have used.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\listfiles
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Place any additional macros here.  Please use \newcommand* where
+%% possible, and avoid layout changing macros (which are not used
+%% when typesetting).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Meta-data block
+%% ---------------
+%% Each author should be given as a separate \author command.
+%%
+%% Corresponding authors should have an e-mail given after the author
+%% name as an \email command.
+%%
+%% The affiliation of authors is given after the authors; each
+%% \affiliation command applies to all preceding authors not already
+%% assigned an affiliation.
+%%
+%% The affiliation takes an option argument for the short name.  This
+%% will typically be something like "University of Somewhere".
+%%
+%% The \altaffiliation macro should be used for new address, etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Kevin Haas}
+\affiliation{University of California-Berkeley, Department of Chemical and Biomolecular Engineering, Berkeley, CA 94720}
+\author{Haw Yang}
+\email{hawyang@princeton.edu}
+\affiliation{Princeton University, Department of Chemistry, Princeton, NJ 08544}
+\author{Jhih-Wei Chu}
+\email{jwchu@berkeley.edu}
+\affiliation{University of California-Berkeley, Department of Chemical and Biomolecular Engineering, Berkeley, CA 94720}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The document title should be given as usual
+%% A short title can be given as a *suggestion* for running headers.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Statistical Learning Theory for smFRET]
+{Expectation-Maximization of the Potential of Mean Force and Diffusion Coefficient in Langevin Dynamics from Single-Molecule FRET Data Photon by Photon}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The manuscript does not need to include \maketitle, which is
+%% executed automatically.  The document should begin with an
+%% abstract, if appropriate.  If one is given and should not be, the
+%% contents will be gobbled.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+The dynamics of a protein along a well-defined coordinate can be formally projected onto the form of an over-damped Lagevin equation. Here, we present a comprehensive statistical-learning framework for simultaneously quantifying the deterministic force (the potential of mean force, PMF) and the stochastic force (characterized by the diffusion coefficient, $D$) from single-molecule F\"{o}rster-type resonance energy transfer (smFRET) experiments. The likelihood functional of the Langevin parameters, PMF and $D$, is expressed by a path integral of the latent smFRET distance that follows Langevin dynamics and realized by the donor and the acceptor photon emissions. The solution is made possible by an eigen decomposition of the time-symmetrized form of the corresponding Fokker-Planck equation coupled with photon statistics. To extract the Langevin parameters from photon arrival time data, we advance the expectation-maximization algorithm in statistical learning, originally developed for and mostly used in discrete-state systems, to a general form in the continuous space that allows for a variational calculus on the continuous PMF function. We also introduce the regularization of the solution space in this Bayesian inference based on a maximum trajectory-entropy principle. We use a highly nontrivial example with realistically simulated smFRET data to illustrate the application of this new method.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Start the main part of the manuscript here.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+A fundamental property of biomolecules such as proteins is their conformational flexibility which allows for a diverse set of physical and chemical processes. The physical origin of the dynamics generally consists of two components---the deterministic mean forces as a function of configurational variation and the stochastic forces due to the thermal energy and environmental noises. Resolving the manner by which these two components contribute to governing dynamical behaviors is thus at the core of elucidating the structure-dynamics-function relationship of protein conformational changes. 
+
+The direct observation of individual proteins is possibly the most straightforward way of dissecting the forces that drive their conformational dynamics. From the physical chemistry view point, therefore, the objective of a single-molecule analysis is to clarify and to quantify from the measured experimental data the dynamics parameters of the probed degree of freedom. Ideally, one would like to capture both the underlying free-energy landscape of the protein conformation and the stochastic diffusion coming from thermal fluctuations and interactions with the unobserved degrees of freedom. Indeed, the direct observation of the distribution and the dynamics that a molecular system exhibits---which are scrambled in ensemble-averaged experiments---are the two unique pieces of information that only single-molecule experiments can provide.\cite{Moerner_Orrit_Science_1999,Weiss_Science_1999} Yet, despite the vigorous development of single-molecule spectroscopy to date,\cite{Yang_book_all_2008,SMColdSpring,Yang_Book_All_2012} the quantitative determination of single-molecule dynamics (not {\it kinetics}) has not been achieved.
+
+For an explicit illustration of the challenges in analyzing single-molecule experiments, let us consider the time-dependent single-molecule F\"orster-type resonance energy transfer (smFRET) experiment of a protein.\cite{Michalet:2006kf,Seidel_review_2010,Tan_Yang_2011} A typical setup uses a pair of fluorescent dyes, a donor and an acceptor, to attach to the ends of a surface-immobilized protein, Fig.\,\ref{fig:FRETdiagram}. Following laser excitation, an electronically excited donor dye can relax to its ground state by emitting a ``green'' photon or by transferring the energy to the nearby acceptor dye that may then emit a ``red'' photon to go back to its ground state. Under favorable circumstances,\cite{Yang:2010gh} the energy-transfer efficiency between dyes depends on the donor-acceptor distance $r$ as $\zeta(x) = 1/(1+ x^6 )$ with $x = r / R_0$ and $R_0$ being the F\"{o}rster radius for the acceptor-donor pair at which the energy-transfer efficiency is 50\%. In this case, the donor-acceptor distance $r$, or equivalently, $x$, is a measure of the protein conformation and is the experimentally accessible degree of freedom onto which the dynamics of the protein is projected. The dynamics of $x$ is naturally stochastic owing to the omnipresent thermal agitations from the experimentally unaccessible protein degrees of freedom and the environment---the first layer of stochasticity in a single-molecule experiment comes from thermal fluctuations. 
+
+The signals from an smFRET experiment are the photons emitted from the tagged protein, which can be captured by confocal microscopy and recorded by a pair of avalanche photodiodes.\cite{Hanson:2007fga} The statistics of photon arrival times follows that of a Poisson process with the emission intensity depending on $x$ parametrically:
+\begin{align}
+\label{eq:Intensity}
+I_a(x) &= I_a^0\zeta(x) + B_a \quad (\text{acceptor}) \\
+I_d(x) &= I_d^0(1-\zeta(x)) + B_d \quad (\text{donor}).
+\end{align}
+Here, $I^0_{a,d}$ are the maximum intensities of the donor (subscript $d$) and acceptor (subscript $a$), and $B_{a,d}$ are the background signals including the donor-acceptor cross talk.\cite{Watkins:2004cia} 
+
+Since the arrival time of each emitted photon is recorded, the waiting-time distributions of the acceptor ($\Delta t_a$) and donor ($\Delta t_d$) photons follow the exponential probability density function with intensities $I_{a,d}$ describing the coupling between the latent variable, $x$, and the observed signals, $\Delta t_a$ and $\Delta t_d$, through photon statistics:
+\begin{align}
+p(\Delta t_{a,d} | I_{a,d} ) = I_{a,d}e^{-I_{a,d}\Delta t_{a,d}}.
+\end{align}
+More specifically, within an infinitesimal time slice $dt$, one of the three observations would occur with the probability densities depending on the latent variable of the system state at the moment, $x_t$, which involve the parameter of total intensity defined as $I(x_t) = I_d(x_t)+I_a(x_t)$:
+\begin{enumerate}
+\item
+an acceptor photon arrives, and the probability density of this event is:
+\begin{align}
+\label{eq:PofATime}
+p(\Delta t_a = dt| x_t ) p(\Delta t_d > dt | x_t ) = I_a(x_t)e^{-I(x_t)dt};
+\end{align}
+\item
+a donor photon arrives, and the probability density of this event is:
+\begin{align}
+\label{eq:PofDTime}
+p(\Delta t_d = dt| x_t ) p(\Delta t_a > dt | x_t ) = I_d(x_t)e^{-I(x_t)dt};
+\end{align}
+\item
+no photon arrives, in which the particular $dt$ instance is considered ``dark,'' and the probability of this event is:
+\begin{align}
+\label{eq:PofDKTime}
+P(\Delta t_a > dt, \Delta t_d > dt| x_t ) =  e^{-I(x_t)dt}.
+% &= \int_{dt}^{\infty} d(\Delta t')\;Ie^{-I(x_t)\Delta t'}\\
+\end{align}
+\end{enumerate}
+The probability of observing both acceptor and donor photons in $dt \to 0$ is extremely small and this event is hence ignored. The information of protein dynamics along $x$ is encoded in the sequence of the colors and arrival times of photons that depend on the system state probabilistically according to Eqs.\,\ref{eq:PofATime}-\ref{eq:PofDKTime}. The photon-detection statistics adds another layer of stochasticity to the quantification of single-molecule dynamics from smFRET. With the two layers of stochasticity explained above---the thermal fluctuations and the random photon-detection events---the core difficulty of learning the protein dynamics along $x$ through such indirect measurements as smFRET is now apparent: There is no explicit probabilistic structure to relate the measured data with the dynamics parameters that characterize the time propagation of the latent  variable. 
+
+In principle, the dynamics of the latent variable $x$ can be recovered using a Bayesian-inference model. However, such developments have so far been limited to a coarse-grained description in which the system dynamics are treated as ``jumps'' between discrete states.\cite{Talaga_JPCA_2003,Kou:2005vu,Zucchini:2009tn,Bronson:2009im,Gopich:2009di,Bronson:2010bv,Liu:2010bz} In fact, it is necessary to assume an {\it ad hoc} number of states in order to construct a Bayesian-inference model. Though the number of stable states along the $x$ coordinate is in general unknown {\it a priori}, and is actually one of the primary goals of a single-molecule analysis. Furthermore, the discrete-state and the ``jump'' assumptions imply a timescale separation in that the each ``jump'' is considered instantaneous and that the dynamics within each discrete state is ignored. Treatments like this in essence mix the contributions from the deterministic and the stochastic forces of protein dynamics into a rate constant matrix connecting different states. As a result, the dynamics are completely omitted and the ensemble averaged {\em kinetics} is obtained instead. Analysis methods that are objective and driven by data rather than by the more subjective modeling would be more satisfactory for learning continuous stochastic dynamics from indirect measurements for the model-independent methods could afford unexpected discoveries from the otherwise noisy single-molecule data.
+
+The Maximum Information Method (MIM) is one such approach that explicitly takes into account photon-counting statistics but does not require any presumed model about the underlying dynamics or modes of states.\cite{Watkins:2004cia} For a given time-stamped photon trajectory, the method operates under the assumption that the unknown $x$ is stagnant until a sufficient number of photons is collected such that the latent variable can be evaluated with a satisfactory precision. In other words, the photon trajectory is binned adaptively (information binding) to produce a distance-time trajectory (thus the $x$ dynamics is followed) in which all the distance measures have the same uncertainty related to photon-counting statistics. This approach in turn permits the quantitative removal of the photon-counting uncertainty in the distance histogram to unambiguously determine the number of states as well the quantitative evaluation of the entire distribution.\cite{Watkins:2006bu} Although this approach is general, free from limiting $x$ to a set of discrete states, and readily applicable to processing experimental data,\cite{Hanson:2007fga,Flynn:2010jpa} resolution loss is inevitable because of the coarse-graining to a single distance value within each time bin, thereby limiting the capacity to rigorously quantify the dynamics. In fact, any binning of the trajectory (time averaging) will inevitably lose information for the dynamics. Furthermore, it is generally difficult to quantify dynamics from fluorescent single-molecule data based on the correlation-based approach because of the poor statistics due to limited trajectory lengths.\cite{Hanson_Yang_2008,HansonJPCB2008} Nevertheless, the maximum-information method represents the current state-of-the-art in the quantitative evaluation of distance fluctuations in smFRET experiments, and has allowed the direct comparison with molecular mechanics modeling\cite{Hanson:2011ui} as well the development of empirical force fields for coarse-grained modeling.\cite{Wang_Wang_JCTC_2013} Therefore, it is used for comparing with the results of the new path-integral statistical learning method presented here.
+
+From the discussions above, it is clear that the dynamics and the quantitative evaluation thereof from smFRET data are the key missing pieces toward realizing the full potential of time-dependent single-molecule spectroscopy. The primary goal of this work is to show the feasibility of solving this problem. Particularly, we aim to go beyond the simple correlation analysis, and provide a framework for the quantitative evaluation of the deterministic and stochastic forces in a molecular system from the indirect measurement of dynamics. 
+
+To begin, one recognizes that the dynamics of $x$ is the projection of the movements of all degrees of freedom of the system, including those of the single molecule in question and its surrounding solvent. Following Zwangzig's projection-operator formalism,\cite{Zwanzig_book_2001} the dynamics of $x$ can be described by the Langevin-type equation of motion,
+\begin{equation}
+\label{eq:ODLD}
+dx_t=D F(x_t)dt  + \sqrt{2D}d{W}_t,
+\end{equation}
+in which the over-damped form implies a separation of time scale between the slow smFRET accessible $x$ and the other fast unobserved degrees of freedom, and is consistent with the dynamics in low Reynolds number media. In this model, The mean force $F(x)=-\nabla_x V(x)$ constitutes the deterministic component in the equation of motion. The PMF, $V(x)$, is related to the equilibrium probability density of $x$, $p_{\rm{eq}}(x)$, as $V(x) = -\ln(p_{\rm{eq}}(x))$. The stochastic force component is parameterized by the diffusion coefficient $D$. The Weiner process $d{W}_t$ has a mean $\langle d{W}_t \rangle = 0$ and variance $\langle d{W}_t \cdot d{W}_{t'} \rangle = \delta (t-t')dt$.\footnote{Throughout the text, the physical variables presented are nondimensionalized by the thermal energy $k_{\rm{B}}T$ at a fixed temperature $T$ as the characteristic energy and the F\"{o}roster radius $R_0$ as the characteristic length. %and the timescale $\bar{t} = 1 \rm s$ as the characteristic time. 
+That is, $\bar{V}(r/R_0)/k_{\rm{B}}T  \to V(x)$, $\bar{F}(r/R_0)R_0/k_{\rm{B}}T  \to F(x)$, $\bar{D}/R_0^2 \to D$, and $\overline{I_{a,d}}(r/R_0) \to I_{a,d}(x)$. Variables with an overbar are the actual quantities before nondimensionalization. $D$ and $I_{a,d}(x)$ have the unit of $\rm s^{-1}$.} The Langevin equation in Eq.\,\ref{eq:ODLD} captures the spatial and temporal continuity of molecular mechanics and dynamics. The study of single-molecule dynamics thus becomes the quantitative eduction of the $F(x)$ profile and the diffusion coefficient $D$ in Eq.\,\ref{eq:ODLD} from the experimentally recorded photon-arrival time trajectory. In practice, however, the difficulties of two-layers of randomness in such experiments, the infinite dimensionality, the non-differentiability in time, and the path integral implied in Eq.\,\ref{eq:ODLD} must be overcome for it to be useful for analyzing realistic experimental data.
+
+This work presents our analytical, numerical, and statistical developments that make possible this goal by overcoming the aforementioned difficulties. Although the method was devised for the specific case of using smFRET to study protein conformational changes, the foundation for statistical leaning of continuous stochastic dynamics established here may also be applicable to other single-molecule methods such as pulling using atomic force microscope or optical tweezer through molecular tags to transmit forces. Since the free-energy landscape and diffusion coefficient of conformational dynamics can also be constructed from the bottom up via computer molecular dynamics simulations with path-based methods of sampling and optimization,\cite{Brokaw:2009tm,Haas:2009jk} the availability of the same type of data from experiments could greatly facilitate experiment-theory cross-validation, tracing the atomistic origin of protein dynamics and ultimately the control thereof.
+
+The rest of this paper is organized as the following. We first present the Bayesian inference framework we employed for the statistical learning of Langevin dynamics from smFRET data. Theoretical developments for calculating the likelihood functional of PMF and $D$ through a trajectory path integral are presented next. This procedure can also be used to infer the probability densities of the latent trajectory, $X(t)$, from a recorded photon trajectory, $Y(t)$. $X(t)$ is a continuous function of time that gives the value of $x$ at a specific time $t$, i.e., $x_t$. On the other hand, $Y(t)$ is a function of time that gives discrete outcomes. At a specific time, the readout of the photon trajectory, $y_t$, is either a donor photon, an acceptor photon, or darkness. We then derive the functional derivatives of the likelihood function with respect to the Langevin dynamics parameters given the observed photon trajectory. With these elements established, an expectation-maximization (EM) optimization of the Langevin model can be devised to deduce the optimal PMF and diffusion coefficient that best describe the data of photon sequence. This work thus advances the applicability of the EM statistical learning algorithm from discrete-state systems to extracting a continuous profile from data. Application of this method to a highly non-trivial test case is presented at the end.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{Figure1.png}
+\caption[A schematic representation of smFRET experiments]{\label{fig:FRETdiagram} A schematic representation of photon-by-photon smFRET experiments. (a) A typical smFRET experimental scheme for a protein using the dye-attached structure of {\it Mycobacterium tuberculosis} protein tyrosine phosphatase, PtpB\cite{Flynn:2010jpa}, as a generic example for graphical illustration purposes. (b) The Jablonski diagram of the energy states in the FRET flourophores and the energy transfer event. The efficiency of energy transfer depends on the inter-dye distance $r$ and the F\"{o}rster radius $R_0$. The dimensionless distance $x$ is $r/R_0$. (c) The graphical model of the continuous Bayesian inference for Langevin dynamics from smFRET measurements. Clear circles represent the latent dynamic variables of the system trajectory, $X(t)$ that gives the value of $x$ at a specific time $t$, i.e., $x_t$. The filled circles represent $Y(t)$, the experimentally realized and recorded photon trajectory. At a specific time, the readout of the photon trajectory, $y_t$, is either a donor photon, an acceptor photon, or darkness. Horizontal arrows represent the conditional probability densities of the time evolution of $x$, $p(x_{t + d t} | x_t)$, and vertical arrows represent the probabilities of photon emission, $p(y_t | x_t)$.}
+\end{figure}
+
+\section{The Bayesian Inference Framework for Continuous Stochastic Dynamics with smFRET}
+
+The trajectory of the tagged protein degree of freedom, $X(t)$, is not observed directly. The statistics regarding the PMF profile and diffusion coefficient are thus not explicit in the photon trajectory. The structure of this convolution is best represented via a Bayesian Graphical Model (BGM) as shown in Fig.\,\ref{fig:FRETdiagram}c. The vertical arrows in the BGM link the conditional probability density of $p(y_t|x_t)$ with the experimental observable at time $t$, $y_t$=donor, acceptor, or darkness, and the latent protein conformation variable at the same time, $x_t$. Following Eqs.\,\ref{eq:PofATime}--\ref{eq:PofDKTime}, there are two classes of observations. The instantaneous event of observing a photon is represented by taking the limit of $dt \to 0$, and the position-dependent probability density functions of $p(y_t|x_t)$ are:
+\begin{align}
+\label{eq:BGMPhoton}
+p(y_t|x_t) =
+\begin{dcases}
+I_a(x_t) & y_t = \text{acceptor photon} \\
+I_d(x_t) & y_t = \text{donor photon}.
+\end{dcases}
+\end{align}
+Alternatively, if the state of darkness was observed over the infinitesimally small, but nonzero interval $dt$, performing time integration in the BGM framework paints a dark duration of the specified size along the trajectory. This observation also depends on $x$ with the probability of:
+\begin{align}
+\label{eq:BGMDark}
+P(y_t |x_t) = 
+\begin{dcases}
+e^{-I(x_t)dt}   & y_t = \text{darkness}.
+\end{dcases}
+\end{align}
+We note that it is important to explicitly incorporate the intermediate times of ``dark'' periods because the ``dark'' periods also carry information about the latent dynamics. The horizontal arrows in the BGM of Fig.\,\ref{fig:FRETdiagram} indicate the conditional probability densities $p(x_{t+dt}|x_t)$ for the time propagation of the indirectly observed degree of freedom. 
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=\linewidth]{Figure2.png} 
+\caption[Test case potential]{\label{fig:VrefFRET} The test case potential. (a) The potential of mean force and (b) the corresponding equilibrium probability density of $x$ used for the simulated smFRET trajectories.}
+\end{figure} 
+
+With this construction, the inversion of smFRET data into PMF and $D$ comes down to solving the following two problems consecutively in an iteration loop:
+\begin{description}
+\item[Inference] What is the probability density of the dynamic trajectory of the protein degree of freedom of interest, i.e., $X(t)$, given a sequence of photon arrival times and colors recorded via smFRET, $Y(t)$? In other words, with a trial mean force profile $F(x)$ and diffusion coefficient $D$ of the Langevin equation, one aims to calculate:
+\begin{align}
+\label{eq:Inference}
+\mathcal{P}(X(t) | Y(t); F(x), D).
+\end{align}
+
+\item[Optimization] What is the optimal profile of the mean force $F(x)$ and diffusion coefficient $D$ for describing the observed photon trajectory? The answer is finding the supremum of (maximizing) the likelihood functional:
+\begin{align}
+\label{eq:Optimization}
+\sup_{F(x),D} \mathcal{P}(Y(t); F(x), D).
+\end{align}
+\end{description}
+
+Solving the inference and optimization problems stated above requires a path integral over the coordinate space of the probability density of a system trajectory $X(t)$ given the smFRET observation of $Y(t)$:
+\begin{align}
+\label{eq:pathI}
+\mathcal{P}(Y(t); F(x), D) = \int \mathcal{D}X(t) \mathcal{P}(X(t) , Y(t); F(x), D).
+\end{align}
+The differential volume of the trajectory space is $\mathcal{D}X(t)$. The integrand is the joint probability density of $X(t)$ and $Y(t)$ given by the BGM of Fig.\,\ref{fig:FRETdiagram}, which is also the complete likelihood functional of $F(x)$ and $D$. The theoretical development presented later illustrates how to perform such calculations given the time stamps and colors of the recorded photons. 
+
+Based on the BGM of Fig.\,\ref{fig:FRETdiagram} and the conditional independencies of the Markov probabilities prescribed therein, the complete likelihood functional can be factorized as:
+\begin{multline}
+\label{eq:pathFactors}
+\mathcal{P}(X(t) , Y(t); F(x), D) = \\
+\mathcal{P} \left (Y(t) | X(t) \right)\mathcal{P}\left (X(t) ; F(x), D \right ).
+\end{multline}
+The capability of performing smFRET inference with the entire continuous profile of $F(x)$ as the basis eliminates the requirement of subjectively assuming the number of metastable conformational states; this information would simply emerge as a result of the optimization.
+
+Without loss of generality, we perform analysis and illustration of the statistical learning algorithm with the model potential shown in Fig.\,\ref{fig:VrefFRET}. The PMF contains two barriers of around $5~k_{\rm{B}}T$, a magnitude that is biologically relevant for protein conformational changes. The two barriers connecting two metastable states correspond to a short and long inter-dye distance with an intermediate region locating at the value of F\"{o}ster radius, $x=r/R_0 \approx 1$. The diffusion coefficient is set to $D=500~\rm s^{-1}$. Photon trajectories of smFRET experiments are simulated by propagating the Langevin equation with the aforementioned PMF and $D$ coupled with a Kinetic Monte-Carlo scheme for simulating the processes of photon emission; the Supplementary Information contains more details of this numerical procedure. 
+
+Table\,\ref{tab:Parameters} lists the default parameters for simulating typical smFRET experiments. In this work, the resolution of a photon trajectory is specified by referencing to the default values of dye intensities listed in Table\,\ref{tab:Parameters}. If the intensities are 2x (two times) of the values in Table\,\ref{tab:Parameters}, twice numbers of photon per time will be received on average, and the resolution is thus doubled. Furthermore, since the dimensionality of the likelihood functional of Eq.\,\ref{eq:pathI}, or, the information content of the latent dynamics, is dictated by the total number of photons, the comparison of data with different resolutions was conducted with the same of number of photons. That is, the values of dye intensities timing the duration of trajectory recording are constant. For the case of 2x resolution, $\langle t_{\mathrm{exp}} \rangle$ would become 1.65 s as compared to that in Table\,\ref{tab:Parameters}.
+
+\begin{table}[t!]
+\centering
+\caption{\label{tab:Parameters} The default simulation parameters of smFRET measurements employed in this work. These values were motivated by the typically encountered conditions in experiments.  $N_{\mathrm{P}}$ is the number of photons observed before the first photo bleaching event occurred and $\langle t_{\mathrm{exp}} \rangle$ is the average duration of the trajectories with these intensities and the number of photons.}
+\begin{tabular}{c|S[table-format=5.1(0)]s[table-unit-alignment = left]}
+\toprule
+Intensity &  \\
+\midrule
+$I_d^0$ & 30000 & \per\s \\ [2pt]
+$I_a^0$ & 16000 & \per\s \\
+$B_d$ & 10  & \per\s \\
+$B_a$ & 20 & \per\s \\
+\midrule
+$N_{\mathrm{P}}$ & 80000 \\
+$\langle t_{\mathrm{exp}} \rangle$ & 3.3 & \s  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Calculation of the Likelihood Functional of PMF and $D$ and Inference of the Latent Trajectory}
+
+Eq.\,\ref{eq:pathFactors} indicates that the joint probability density of $X(t)$ and $Y(t)$ can in theory be calculated based on the Langevin equation of motion that sets $\mathcal{P}(X(t);F(x),D)$ and the waiting time distributions of experimental photon arrival events of Eq.\,\ref{eq:BGMPhoton} and Eq.\,\ref{eq:BGMDark}. At the time instances at which a photon is detected, $\{t_\tau \mid \forall \tau \in [0,N_{\mathrm{P}}]\}$ where $N_{\mathrm{P}}$ is the total number of recorded photons, the conditional probability density of Eq.\,\ref{eq:BGMPhoton} is used to represent the likelihood of such an event. To express the complete likelihood function, or $\mathcal{P}(X(t),Y(t))$, for a trajectory of duration $t_{\mathrm{exp}}$, we employ the following expansion based on the BGM of Fig.\,\ref{fig:FRETdiagram}:
+\begin{multline}
+\label{eq:pathIterms}
+\mathcal{P}(X(t) , Y(t) ) = \\
+p(x_{t_0})\prod_{\tau=1}^{N_{\mathrm{P}}}p(y^{a,d}_{t_\tau}|x_{t_\tau})p(x_{t_\tau},y_{[t_\tau,t_{\tau-1}]}^{\text{dark}} | x_{t_{\tau-1}}).
+\end{multline}
+The notation of $y_{[t_\tau,t_{\tau-1}]}^{\text{dark}}$ in this equation indicates that during the time window between the arrivals of photon $\tau$ and photon $\tau-1$, $\Delta t_{\tau} = t_\tau- t_{\tau-1}$, the recorded observation in the smFRET experiment is darkness.  On the other hand, $y^{a,d}_{t_\tau}$ denotes the photon color (acceptor or donor) observed at the instance of time $t_\tau$. A similar construction was offered in\cite{Cao:2008ha} for a discrete-state Markov representation.
+
+An important message from the above analysis is that for the statistical learning of smFRET measurements, observing the dark period of $\Delta t_{\tau}$ before receiving the $\tau^{\rm th}$ photon also contains certain dynamics information on the latent variable. Essential to incorporating the complete information in the photon sequence for extracting continuous stochastic dynamics is thus the efficient and accurate calculation of $p(x_{t_\tau},y_{[t_\tau,t_{\tau-1}]}^{\text{dark}} | x_{t_{\tau-1}})$ that inevitably involves a path integral. 
+
+The calculation involves dividing the dark period into $\Delta t_{\tau}/dt$ slices, and the coordinate at each slice is set to $x_{t_i}$ with $i=(1,...,(\Delta t_\tau/dt-1))$ and $t_i=t_{\tau -1}+i(dt)$. One thus needs to perform integration for all time slices between the photon arrival events:
+\begin{multline}
+\label{eq:FkacProd}
+p(x_{t_\tau},y_{[t_\tau,t_{\tau-1}]}^{\text{dark}} | x_{t_{\tau-1}}) = \idotsint \prod^{{\Delta t_{\tau}}/dt-1}_{i=1} dx_{t_i} \\   p(y^{\text{dark}} |x_{t_i})   p(x_{t_i} | x_{t_{i-1}})\delta( X(\Delta t_\tau)-x_{t_\tau}).
+\end{multline}
+Here, $p(x_{t_i} | x_{t_{i-1}})$ is the latent dynamics propagator over a time step $dt$. Taking the limit of $dt\to 0$, the dimensionality of the path integral in Eq.\,\ref{eq:FkacProd} becomes infinity. How to overcome this seemly intractable task is a key challenge in inferring the continuous latent trajectory from a recorded photon sequence. Below, we overcome this challenge by devising a scheme---the first of its kind---to evaluate $p(x_{t_\tau},y_{[t_\tau,t_{\tau-1}]}^{\text{dark}} | x_{t_{\tau-1}})$ via Eq.\,\ref{eq:FkacProd}.
+
+Since both the Langevin equation and the dark snapshot probability (Eq.\,\ref{eq:BGMDark}) do not have explicit time dependence, we seek to propagate them forward in time together for calculating the path integral of Eq.\,\ref{eq:FkacProd}. Considering that $p(y^{\text{dark}} |x_{t_i})=\exp(-I(x_{t_i})dt)$ is the exponential of a Reimann integral over time, Eq.\,\ref{eq:FkacProd} is transformed into a path expectation form:
+\begin{multline}
+\label{eq:Fkac}
+p(x_{t_\tau},y_{[t_\tau,t_{\tau-1}]}^{\text{dark}} | x_{t_{\tau-1}}) = \\
+\mathbb{E}_{X(t)} \left [ e^{-\int_0^{\Delta t_{\tau}} dt' I\left(X(t')\right)} \delta( X(\Delta t_\tau)-x_{t_\tau}) \right . \mid X(0)=x_{t_{\tau-1}} \bigg].
+\end{multline} 
+Following the Feynman-Kac theorem in a similar context,\cite{Gopich:2005co,Gopich:2003kb} the probability density defined in Eq.\,\ref{eq:Fkac} can be obtained by solving the following partial differential equation (PDE):
+% with the no-flux boundary conditions:
+\begin{equation}
+\label{eq:FPE}
+%\frac{\partial p(x,t)}{\partial t} =  D\nabla^2 p(x,t) - \nabla( DF(x) p(x,t) ) - I(x) p(x,t).
+\frac{\partial p(x,t)}{\partial t}= \left ( D\nabla^2 - \nabla DF(x) - I(x) \right ) p(x,t).
+\end{equation}
+Here, $p(x,t)$ is a shorthand notation of $p(x_{t_\tau},y_{[t_\tau,t_{\tau-1}]}^{\text{dark}} | x_{t_{\tau-1}})$. The variable $x$ at time $t$ corresponds to $x_{t_\tau}$, i.e., $t_\tau \equiv t$, and is the object of the gradient operators in Eq.\,\ref{eq:FPE}. The initial distribution of probability density $p(x,0)$ represents the condition at $t_{\tau-1}$ in Eq.\,\ref{eq:Fkac}, and $t_{\tau-1} \equiv 0$. 
+
+Eq.\,\ref{eq:FPE} is essentially the Fokker-Plank equation of the Langevin equation of motion of Eq.\,\ref{eq:ODLD} with the additional $I(x)$ term acting as an indicator the observation of darkness. The incorporation of the dark operator with the Langevin time propagation allows the path integral in Eq.\,\ref{eq:FkacProd} to be accomplished by solving the partial differential equation of Eq.\,\ref{eq:FPE}. It is thus not necessary to explicitly go through the infinite dimensionality for including the information of each dark period. This development for $p(x_{t_\tau},y_{[t_\tau,t_{\tau-1}]}^{\text{dark}} | x_{t_{\tau-1}})$ calculation is one of the critical aspects devised this work for making possible the statistical learning of continuous stochastic dynamics.
+
+%instead be computed by integrating the following partial differential equation backward in time starting with the final condition of $p(x,T) = \delta(x-x_{t_\tau})$. \footnote{A Similar construction was developed by Gopich and Szabo \cite{Gopich:2003kb} that applies the Kubo-Anderson line shape theory to the Fourier transform of the equilibrium probability density in a time averaged function of position. In contrast, we work with the real space probability density of the time propagation of the dark state.}
+%\begin{align}
+%\frac{\partial p(x,t)}{\partial t}= -D\nabla^2 p(x,t)-DF(x)\nabla p(x,t) - I(x) p(x,t).
+%\end{align}
+%This partial differential equation is the backward Komokov equation of the Langevin dynamics. The solution of which given the stated final condition is in fact the reverse-time propagator probability density $p(x_{t_0},y_{[t,t_0]}^{\text{dark}}|x_t)$.  
+
+%Flipping around the order of time integration, the corresponding Fokker-Planck equation which describes the time evolution of the probability of finding the system at a certain position generated by 
+%\begin{equation}
+%\label{eq:FPE}
+%\frac{\partial p(x,t)}{\partial t} =  D\nabla^2 p(x,t) - \nabla( DF(x) p(x,t) ) - I(x) p(x,t)
+%\end{equation}
+%with initial condition $p(x,0)=p_0(x)$ and the no flux boundary conditions $(D(x)\nabla p(x,t) - D(x)\vec{F}(x) p(x,t))|_{-L,L} = 0$. The limiting distribution for $t\to \infty$ is the equilibrium probability $p_{\rm{eq}}(x)\propto \exp(-V(x)/k_{\rm{B}}T)$.  The equilibrium probability is a stationary state of the system that the flux of probability is zero and time derivative is zero. Where $\vec{F}(x)=\nabla V(x)/k_{\rm{B}}T$ is the force as a function of position normalized by $k_{\rm{B}}T$.
+
+Another essential component is the recognition that a symmetric version of the PDE in Eq.\,\ref{eq:FPE} can drastically simplify the calculation of the likelihood functional of Eq.\,\ref{eq:pathI} through the path integral over $X(t)$. In particular, a new dependent variable is defined as $\rho(x,t)=p(x,t)/\sqrt{p_{\rm{eq}}(x)}$ to transform the PDE to a symmetric form with the Hermitian operator of time propagation given below:
+\begin{align}
+\label{eq:Hoperator}
+\frac{\partial}{\partial t} \rho(x,t) &= -\bm{H}\rho(x,t) \\
+\label{eq:Hamiltonian}
+\bm{H} &= - D\nabla^2  + D\frac{\nabla{F(x)}}{2} +D\frac{{F}^2(x)}{4} + I(x).
+\end{align}  
+The formal solution of this Hermitian PDE can be written as:
+\begin{equation}
+\label{eq:expH}
+\rho(x,t)=e^{-\bm{H}t}\rho(x,0).
+\end{equation}
+Along the same token, the photon arrival probability densities of Eq.\,\ref{eq:BGMPhoton} can be expressed in an operator form. The bright operator (photon detection even), $\bm{y}_{\tau}$, would appear $N_{\mathrm{P}}$ times at the time instances of $\{ t_{\tau}, \tau \in [1,N_{\mathrm{P}}] \}$:
+\begin{align}
+\bm{y}_{\tau} = 
+\begin{dcases}
+\bm{y}^a \equiv I_a(x) & y_{t_\tau} =\text{acceptor photon};\\ 
+\bm{y}^d \equiv I_d(x) & y_{t_\tau}=\text{donor photon}.
+\end{dcases}
+\end{align}
+
+Performing the path integral of Eq.\,\ref{eq:pathI} via the factorization scheme in Eq.\,\ref{eq:pathIterms} in the evaluation of the likelihood functional of the Langevin parameters, $\left ( F(x),D \right ) \equiv \theta$, can now be represented via the Dirac notation\cite{Song_2009} as a series of time propagations in the dark followed by the events of recording a photon:
+\begin{multline}
+\label{eq:PathP}
+\mathcal{P}(Y(t) ; F(x),D) = \mathcal{P}(Y(t) ; \theta)= \mathcal{L}[\theta]= \\
+\langle \alpha_{t_0} |e^{-\bm{H}\Delta t_1}\bm{y}_1e^{-\bm{H}\Delta t_2}\bm{y}_2 \ldots e^{-\bm{H}\Delta t_{N_{\mathrm{P}}}}\bm{y}_{N_{\mathrm{P}}} | \beta_{t_{\mathrm{exp}}} \rangle.
+\end{multline}
+In this representation, the ``bra'' state $\langle \alpha_{t_\tau} |$ carries the probability amplitude of the system state at $t_\tau$ given all the photon data in past between $[0,\tau]$ and the ``ket'' state $|\beta_{t_\tau}\rangle$ contains the probability density amplitude of the latent variable at the same time given all of the photons arriving in the future of the smFRET recording, $[\tau,t_{\rm exp}]$. Path integral across the entire duration from smFRET initiation to the collection of the last photon is just the inner product of these ``bra-ket'' pairs. Therefore, inferring the trajectory of the latent variable $x$ via all of the recorded photon data, i.e., solving the inference problem defined in Eq.\,\ref{eq:Inference}, one can follow the Copenhagen interpretation in quantum mechanics\cite{Sakurai:1985uw} to obtain:
+\begin{align}
+\label{eq:InferState}
+p(x_t | Y(t); \theta ) = \frac{\alpha(x_t,y_{[0,t]})\beta(y_{(t,t_{\mathrm{exp}}]}|x_t)}{\mathcal{P}(Y(t))} = \frac{1}{\mathcal{L}[\theta]} \langle \alpha_t | x \rangle \langle x | \beta_t \rangle.
+\end{align}
+The dependence of the terms in Eq.\,\ref{eq:InferState} on the parameter set $\theta$ has been omitted to avoid over-complication of the notation.
+
+Since there is no external forces, the initial and final state, $\langle \alpha_{t_0} |$ and $|\beta_{t_{\mathrm{exp}}} \rangle$, respectively, are assumed to follow the equilibrium distribution $\rho_{\rm{eq}}(x)=\sqrt{p_{\rm{eq}}(x)}$; that is,
+\begin{align}
+\label{eq:Start}
+\langle \alpha_{t_0} | x \rangle = \rho_{\rm{eq}}(x) \quad {\rm and} \quad \langle x |\beta_{t_{\mathrm{exp}}} \rangle = \rho_{\rm{eq}}(x).
+\end{align}
+The initial and final states can also be constructed by using the Hamiltonian propagator of the Langevin equation without the dark operator, denoted as $\bm{H}^0$, and extending the temporal domain to infinite times since
+\begin{align}
+\big \langle 1 \big | e^{-\bm{H}^0 t } \big | x \big \rangle \big |_{{t \to \infty}} \rightarrow \sqrt{p_{\rm{eq}}(x)}.
+\end{align}
+As such, the likelihood function can be written as:
+\begin{align}
+\label{eq:Ltrace}
+\mathcal{L}[\theta] = \tr \left[e^{-\bm{H}^0 \infty } e^{-\bm{H}\Delta t_0} \left( \prod_{\tau}^{N_{\mathrm{P}}} \bm{y}_{\tau}e^{-\bm{H}\Delta t_{\tau}} \right) e^{-\bm{H}^0 \infty } \right].
+\end{align}
+Much of this formulation resembles the structure of quantum dynamics in the form of the density matrix.\cite{Feynman:2012wb}   
+%specifically the  Von Neumann experimentson the density matrix without the time symmetry from the imaginary number.  Bras contain previous information and kets contain future information.  Additionally, the inner product between $\langle \alpha_t | \beta_t \rangle$ doesn't naturally have unity magnitude but instead is equal to the likelihood $\mathcal{L}$.
+
+Progress in evaluating the path integral of Eq.\,\ref{eq:PathP} or the trace operation of Eq.\,\ref{eq:Ltrace} can be made by seeking an eigen-decomposition of the Hermitian operator of Eq.\,\ref{eq:Hoperator} to obtain the eigenbasis $\psi_i(x)$ that is consistent with the completeness relationship, $\bm{1} = \sum_i | \psi_i(x) \rangle \langle \psi_i(x) |$ with $\bm{1}$ being the identity operator. Inserting this identity in between each photon-arrival operator in Eq.\,\ref{eq:PathP} transforms the path integral or trace operation into matrix multiplications as:
+\begin{align}
+\label{eq:prodterms}
+\mathcal{L}[\theta] &= \sum_{\substack{\{i_\tau\}}} \sum_{\substack{\{j_\tau\}}} \prod_{\tau}^{N_{\mathrm{P}}} \langle \psi_{i_{\tau-1}} | \bm{y}_{\tau} | \psi_{j_\tau} \rangle \langle \psi_{j_\tau} | e^{-\bm{H}\Delta t_{\tau}} | \psi_{i_{\tau+1}} \rangle.
+\end{align}
+In the summation at the arrival time of the $\tau^{\rm th}$ photon, $i_\tau$ and $j_\tau$ both vary from one to the total number of eigenvectors.\footnote{In this work, 64 eignevectors where used in all calculations. However, 16 eigenvectors would also be adequate for numerical solutions because the precision of the eigen decomposition converges with spectral accuracy.} The ${i_\tau}$ and ${j_\tau}$ sets in Eq.\,\ref{eq:prodterms} thus include the indices of all of the eigenvectors associated with the system state at the arrival of each of the $N_{\mathrm{P}}$ photons. The initial condition of Eq.\,\ref{eq:Start} is also implied in the summation. In Eq.\,\ref{eq:prodterms}, the joint probability density $\mathcal{P}(Y,X ; \theta)$ appears as the product of bra-ket groupings inside the double summation with the specific eigenstate at each time dictated by the elements in the ${i_\tau}$ and ${j_\tau}$ sets. Therefore, $\prod_{\tau} \langle |\rangle$ is used as a shorthand notation for the summand in Eq.\,\ref{eq:prodterms}, and 
+\begin{align}
+\label{eq:PiTau}
+\mathcal{P}(X,Y ; \theta) = {\prod}_{\tau} \langle |\rangle. 
+\end{align}
+
+This exploitation of the Hermitian nature of the time propagator plays a critical role in making possible the statistical learning of continuous stochastic dynamics. Although the operation in Eq.\,\ref{eq:PathP} or Eq.\,\ref{eq:Ltrace} can be performed forward or backward in time, we generally start from time zero with the vector given by Eq.\,\ref{eq:Start} and perform the matrix operation to the right with Eq.\,\ref{eq:prodterms}. Next, we present the procedure we devised for eigen-decomposing the Hermitian time propagator, evaluating the likelihood functional, and inferring the latent trajectory given a recorded photon sequence.
+
+\section{Determination of Eigenbasis from $\bm{H}^0$ and $\bm{H}$}
+
+The procedure presented below for eigen-decomposition is not unique but nonetheless allows for computational feasibility of the path integral. Diagonalization of the operator was performed by using a spectral finite element method.\cite{Pozrikidis:2005vb} First, we solve the symmetric Fokker-Planck equation of the Langevin dynamics, 
+\begin{align}
+\label{eq:FPH0}
+\frac{\partial \rho(x,t)}{\partial t} &= -\bm{H}^0 \rho(x,t), \\
+\bm{H}^0 &= -D\nabla^2  + V_{\rm eff}(x), \\
+V_{\rm eff}  &= \frac{DF'(x)}{2} + \frac{DF^2(x)}{4}.
+\end{align}
+We then use the resulting eigenbasis to solve the PDE of Eq.\,\ref{eq:Hoperator} with the dark operator. 
+
+The Hermitian $\bm{H}^0$ gives a set of orthonormal basis $\langle \psi^0_i |$ that satisfies the completeness relationship, $\bm{1} = \sum_i | \psi^0_i \rangle \langle \psi^0_i |$. The time dependence of $\rho(x,t)$ in Eq.\,\ref{eq:FPH0} can be accounted for by:
+\begin{align}
+\rho(x,t) = \sum_i c_i \langle x | \psi^0_i \rangle e^{ - \lambda^0_i t }.
+\end{align}
+%Inserting into the PDE gives the following assuming the $\bm{H} \neq \bm{H}(t)$ gives
+%\begin{align}
+%\sum_i c_i \bm{H} | \psi^0_i \rangle e^{ - \lambda^0_i t } = \sum_i c_i \lambda^0_i| \psi^0_i \rangle e^{ - \lambda_i t } 
+%\end{align}
+The coefficients $c_i$'s are time invariant and can be determined, for example, based on the initial distribution of $\rho(x,0)$.
+The eigenvalues satisfy: 
+\begin{align}
+\bm{H}^0 | \psi_i^0 \rangle  = \lambda^0_i| \psi_i^0 \rangle.
+\end{align}
+%Therefore we find that for the ansatz to hold, $\psi_i$ are eigenvectors of the operator $\bm{H}$ with eigenvalues $\lambda_i$\cite{Hsu:2012ut}.  
+The finite-time propagation of $\bm{H}^0$ can be represented by constructing the matrix $\Psi^0$ that contains the eigenvectors as the columns and the diagonal matrix $\Lambda^0$ of the eigenvalues:
+\begin{align} 
+e^{-\bm{H}^0\Delta t}  = \Psi^0 e^{-\Lambda^0\Delta t} {\Psi^0}^\dagger.
+\end{align}
+
+Given a set of PMF and diffusion coefficient of the Langevin equation, we determine the eigenvalues and eigenvectors via a highly accurate spectral finite element method with localized polynomials as the interpolation function in the elements. Details of this numerical solution are provided in the Supplementary Information. We found robust convergence with $N_E = 256$ elements with $N_L = 7$ order polynomials for all of the systems we have analyzed. In particular, the spectral elements, $u_n(x)$'s, are used to expand the scaled eigenvectors by the square root of the equilibrium probability density, $\rho_{\rm eq}(x)$:
+\begin{align}
+\psi^0_i(x) &= \rho_{\rm eq}(x) \phi^0_i(x) \\
+\phi^0_i(x) &= \sum_n c^0_n u_n(x).
+\end{align}
+In this case, a generalized eigenvalue problem is solved:
+% with the zero-flux boundary conditions:
+\begin{align}
+%\sum_n \langle v'_m| p_{\rm{eq}} | u'_n \rangle c_n = \lambda \sum_n \langle v_m | p_{\rm{eq}} | u_n \rangle c_n
+\sum_n \langle u_m \rho_{\rm eq} | \bm{H}^0 |  \rho_{\rm eq} u_n \rangle c^0_n = \lambda^0 \sum_n \langle u_m | p_{\rm{eq}} | u_n \rangle c^0_n.
+\end{align}
+
+The Hamiltonian matrix $K^0_{nm}=\langle u_m \rho_{\rm eq} | \bm{H}^0 | \rho_{\rm eq} u_n \rangle$ and the overlap matrix $S^0_{nm} =\langle u_m | p_{\rm{eq}} | u_n \rangle$ are then calculated with analytical differentiation of the interpolation functions, and numerically integrate to solve the algebraic equation of $K^0c^0=\lambda^0 S^0c^0$. Some representative eigenbases are graphically displayed in Fig.\,\ref{fig:eigs}. 
+
+\begin{figure}[t]
+\includegraphics[width=\linewidth]{Figure3.png}
+\caption[Eigenvectors of Hamiltonian for 3 well system]{\label{fig:eigs} The eigenvectors and eigenvalues of the Langevin Hamiltonian with the reference PMF ($V(x)$) shown in Fig.\,\ref{fig:VrefFRET} and $D=500~\rm s^{-1}$. The first eigenvector is the equilibrium density $\rho_{\rm{eq}}(x)$ with eigenvalue $\lambda_1=0$. The second eigenvector is the slowest reaction of the system that is the transition between the state at $x=0.8$ and $x=1.2$, and the eigenvalue of this process sets the apparent time-scale of system relaxation, $1/ \lambda_2 = \tau \approx 0.5$\,ms. The third eigenvector is entrance and escape from the intermediate state at $x=1.0$.}
+%Higher-order modes describe the diffusion processes within each well.}
+\end{figure}
+
+The eigenbasis of $\bm{H}^0$ is then used to solve the eigenvalue problem that involves the dark operator required for the smFRET likelihood calculation: 
+\begin{align}
+\label{eq:PsiBasis}
+\left ( \bm{H}^0 + \bm{H}^I \right ) | \psi_i \rangle = \lambda_i | \psi_i \rangle.
+%\langle \psi_i(x) | \bm{H}^0 + \bm{H}^I | \psi_j(x) \rangle = \lambda_i \delta_{i,j}
+\end{align}
+Here, $\bm{H}^I=I(x)$, and the new eigenvector is then constructed as a linear combination of $|\psi^0_i \rangle$, $ | \psi_i \rangle = \sum_j c_{ij} | \psi_j^0(x) \rangle $.\footnote{The summplemenary information details how the Jeffery's prior, or square root of fisher information for the dye intensities of a smFRET experiment, can be added to $I(x)$ to account for the disparity in the information content from the photons emitted at different positions in the domain when the acceptor and donor intensities are not equivalent.} The algebraic equation of this problem, $Kc=\lambda c$, is then solved. The matrix elements of $K$ are: 
+\begin{align}
+K_{ij} = \langle \psi_i^0 | \bm{H}^0 + \bm{H}^I | \psi^0_j(x) \rangle = \lambda_i \delta_{ij} + \langle \psi_i^0 | \bm{H}^I |\psi^0_j \rangle.
+\end{align}
+After obtaining the eigenbasis of $\bm{H}$, the photon arrival operators would have the matrix elements as:
+\begin{align}
+\langle \psi_i | \bm{y}_{a,d} | \psi_j \rangle = \int dx \; \psi_i(x)I_{a,d}(x)\psi_j(x).
+\end{align}
+
+With the theoretical and numerical tools developed thus far, the likelihood function of Eq.\,\ref{eq:PathP} can now be evaluated via a series of $N_{\rm P}$ matrix operations starting at either the $\alpha$ or $\beta$ end via Eq.\,\ref{eq:prodterms}. The calculation of the likelihood functional is thus proportional to the number of the collected photons. After each matrix-vector multiplication, the state vector $\alpha_t$ or $\beta_t$ is normalized to prevent numerical underflow and these normalizations are collected according to Eq.\,\ref{eq:normalize} to record the log-likelihood as well as the inferred trajectory of the latent variable:\cite{Turner:2008uv} 
+\begin{align}
+\label{eq:normalize}
+\ell[\theta] = \ln \mathcal{L}[\theta] = \sum_{\tau=1} \ln \frac{\|\alpha_{t_\tau}\|}{\|\alpha_{t_{\tau-1}}\|} +  \ln \frac{\langle \alpha_{t_{N_{\mathrm{P}}}}|\beta_{t_{N_{\mathrm{P}}}} \rangle}{\|\alpha_{t_{N_{\mathrm{P}}-1}}\|},
+\end{align}
+where $\|\cdot\|$ indicates vector norm.  
+
+\section{Inferring the Probability Density of the Latent Dynamic Variable as a Function of Time}
+
+Given the sequence of photon colors and arrival times in a specific smFRET measurement, the probability density of the latent variable at different times can be evaluated via Eq.\,\ref{eq:InferState}. A simulated sequence of photon emission of a smFRET process using the PMF and diffusion coefficient outlined in Fig.\,\ref{fig:VrefFRET} was used as the data set to perform the inference calculation. The resolution used in simulating the photon emission follows the intensity values specified in Table \ref{tab:Parameters} with a total length of ~3.3 s. With the knowledge of the underlying PMF and $D$ and a sufficiently high resolution in the smFRET experiment, Fig.\,\ref{fig:InferTrajref} shows that the latent trajectory can indeed be accurately inferred. The inferred probability density shown as contours closely overlaps with the trace of the actual Langevin trajectory. The figure also shows that the resulting statistics of the equilibrium distribution quantitatively reproduces that given by the underlying PMF. This result thus numerically validates the inference scheme of Eq.\,\ref{eq:InferState} developed in the previous section. In contrast, using the MIM method discussed earlier that involves time binning gives a blurred histogram due to the resulting information loss of the MIM method. (cf.\,the orange bars in Fig.\,\ref{fig:InferTrajref}) that deviates from the right answer. Other details of the smFRET simulation and MIM analysis are reported in Supplementary Information.
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=\linewidth]{Figure4.png}
+\caption[Contours of reference trajectory from smFRET]{\label{fig:InferTrajref} Numerical validation of using Eq.\,\ref{eq:InferState} for inferring the dynamics of $x$ from the photon sequence recorded in a smFRET experiment. In this case, PMF and $D$ are assumed to be known a {\it a priori}, and the EM algorithm was thus not applied. Note the quantitative match of the inferred distance-time trajectory (dark-blue shades) with respect to the ``true'' trajectory (solid black line). The resolution used in simulating the photon emission follows the intensity values specified in Table\,\ref{tab:Parameters}. The reference model parameters shown in Fig.\,\ref{fig:VrefFRET} were used in simulating the photon-arrival trajectory. Only the initial section of 0.04 s of the 3.3 s total trajectory is shown. (top) The trace of photon arrivals per millisecond recorded in the donor and acceptor channels. (bottom-right) Time-averaged probability density of $x$ in the inferred probability density of trajectories, $p_{\rm{eq}}(x) = 1/t \int_0^{t} \delta(x - x')$. The dashed line is the reference distribution in Fig.\,\ref{fig:VrefFRET}a. (bottom-left)  The contours of the product of the inferred $\langle \alpha(t) | x \rangle$ and $\langle x | \beta(t) \rangle$ vectors, i.e., $\mathcal{P}(X(t)|Y(t); F(x), D)$, with the color intensity using the log-scale. Orange crosses are the MIM estimates via adaptive time binning with a relative standard deviation of $\sigma=0.1$.\cite{Watkins:2004cia,Watkins:2006bu}}
+\end{figure}
+
+Obviously, without a prior knowledge of the true $F(x)$ and/or $D$, the inference would not be accomplished as accurately. Using a default trial profile for the equilibrium probability density, $p_0(x) = \cos^2(x/L)$, where $L$ is the size of spatial domain of $x$, in Eq.\,\ref{eq:InferState}, Fig.\,\ref{fig:InferTraj} shows that the inferred probability densities of the latent trajectory has significant differences in comparison to the actual trajectory of $x$, although the instances of the transitions between metastable states can be captured rather accurately. The simulated photon trajectories and $x$ are the same as those in generating the results of Fig.\,\ref{fig:InferTrajref}. The time-averaged distribution of $x$ from the inferred probability densities, $\overline{p}(x) \sim p_{\rm{eq}}(x)$, also differs significantly from the three-well PMF of the actual dynamics of the latent variable. The default trial profile of $p_0(x) = \cos^2(x/L)$ is the least informative dynamics model for a system of a fixed domain without any prior knowledge of $F(x)$.\cite{Haas:2013uj} In this case, Fig.\,\ref{fig:InferTraj} shows that the MIM histogram with the information loss due to adaptive time-binning gives a similar profile of $x$ histogram as that of the inference with $p_0(x) = \cos^2(x/L)$. In this illustration, the maximum likelihood diffusion coefficient of $D=82 \rm s^{-1}$ given the $p_0$ distribution was used.
+
+\begin{figure}[t]
+\centering
+\includegraphics{Figure5.png}
+\caption[Contours of inferred trajectory from smFRET]{\label{fig:InferTraj} Inferring the dynamics of $x$ from the photon sequence recorded in a smFRET experiment with the maximum likelihood $D=82 \rm s^{-1}$ is the case of having no information on PMF. The EM algorithm was not yet applied. The trial PMF used for inference is $p_0(x) = \cos^2(x/L)$ that gives least informative dynamics with a fixed domain.\cite{Haas:2013uja} The trial PMF is thus different from the actual profile used to generate the photon trajectory. Only the initial section of 0.04 s of the 3.3 s total trajectory is shown. (top) The trace of photon arrivals per millisecond recorded in the donor and acceptor channels. (bottom-right) Time-averaged probability density of $x$ in the inferred probability density of trajectories, $p_{\rm{eq}}(x) = 1/t \int_0^{t} \delta(x - x')$. (bottom-left)  The contours of the product of the inferred $\langle \alpha(t) | x \rangle$ and $\langle x | \beta(t) \rangle$ vectors, i.e., $\mathcal{P}(X(t)|Y(t); F(x), D)$, with the color intensity using the log-scale. The solid line is the ``true'' $x$ trajectory based on the free energy surface shown in Fig.\,\ref{fig:VrefFRET}b. Points (x) are the MIM estimates via adaptive time binning with a relative standard deviation of $\sigma=0.1$.\cite{Watkins:2004cia,Watkins:2006bu}}
+\end{figure}
+
+The agreement between the inferred and the actual latent trajectory without the prior knowledge of the underlying PMF and $D$ can be systematically improved by performing the maximization step of statistical learning in Eq.\,\ref{eq:Optimization}. The remaining sections of this paper detail the developments in this direction.  
+
+\section{Extracting the Langevin Parameters embedded in smFRET data via Expectation-Maximization}
+
+Maximization for the optimal parameter set requires taking derivatives of the log-likelihood functional in Eq.\,\ref{eq:PathP} and solves the resulting Euler-Lagrange equation:
+\begin{align}
+\label{eq:EL}
+\frac{\delta \ell [\theta]}{\delta \theta} = \frac{\delta }{\delta \theta} \ln \int \mathcal{D}X(t) \mathcal{P}(X(t),Y(t);\theta) =0.
+\end{align}
+This task appears to be nearly impossible because the functional dependence on the Langevin parameters is implicitly buried within the path integral. To make the calculation trackable, we generalize the expectation-maximization (EM) algorithm\cite{Dempster_Larid_Rubin_1977-EM,Little:2002vf} developed for discrete-state systems\cite{Watkins:2005hba} to handle the continuous space of Langevin dynamics. 
+
+Firstly, taking the natural log outside the integral in Eq.\,\ref{eq:EL} is moved inside to optimize a lower bound of the likelihood function due to Jensen's inequality. As shown later, this expectation step of EM ensures that optimizing this lower bound also improves the likelihood function itself. In particular, the expectation is performed via the auxiliary function $\mathcal{P}(X(t)|Y(t);\theta^k)$, the inferred probability density of the latent trajectory with the parameter set at step $k$ of the EM iteration, $\theta^k$.\cite{Little:2002vf} The expectation is thus defined as: $\mathbb{E}^k_{X|Y}[\cdot] = \int \mathcal{D} X(t) (\cdot) \mathcal{P}(X(t)|Y(t);\theta^k)$. In this way, Eq.\,\ref{eq:EL} is recast into:
+\begin{align}
+\label{eq:ELEM}
+\frac{\delta }{\delta \theta}  \mathbb{E}^k_{X|Y} \left[    \ln \mathcal{P}(X(t),Y(t);\theta) \right]=0.
+\end{align}
+The key here is treating the parameter set $\theta^k$ in the weighting function of Eq.\,\ref{eq:ELEM} as constants in functional derivatives. Only the complete likelihood being expected in Eq.\,\ref{eq:ELEM} contains the $\theta$ set as independent variables for increasing the likelihood function via maximization. Solving Eq.\,\ref{eq:ELEM} determines the parameter set of the next EM iteration, $\theta^{k+1}$.
+
+The connection between Eq.\,\ref{eq:ELEM} and Eq.\,\ref{eq:EL} can be expressed alternatively as the following. First, the log-likelihood function we aim to optimize can be split up into:
+\begin{align}
+\ell [\theta] = \ln \mathcal{P}(Y;\theta)&= \ln \mathcal{P}(Y,X;\theta) - \ln \frac{\mathcal{P}(Y,X;\theta)}{\mathcal{P}(Y;\theta)} \\
+\label{eq:EMstart}
+&=\ln \mathcal{P}(Y,X ; \theta) - \ln \mathcal{P}(X | Y;\theta).
+\end{align}
+The notation has been collapsed via setting $Y=Y(t)$ and $X=X(t)$. The expectation over the latent trajectories with the auxiliary function $\mathcal{P}(X|Y;\theta^k)$ described earlier is now taken to both sides of Eq.\,\ref{eq:EMstart}. The log-likelihood in the lefthand side remains unchanged with no $X$ dependence. The expectation transforms the first term on the righthand side into the expected log of the complete likelihood in Eq.\,\ref{eq:ELEM}. The second term on the righthand side of Eq.\,\ref{eq:EMstart} after the expectation is recognized as  an ``entropy'' function for $X$. Therefore, the following decomposition can be achieved:
+\begin{align}
+\label{eq:EM}
+\ell [\theta] &= Q^k(\theta) + S^k(\theta)\\
+\label{eq:EMQ}
+Q^k[\theta] &=  \int \mathcal{D} X \; \mathcal{P}(X|Y;\theta^k)  \ln \mathcal{P}(Y,X ; \theta) \\
+S^k[\theta] &= - \int \mathcal{D} X \; \mathcal{P}(X|Y;\theta^k)  \ln \mathcal{P}(X | Y; \theta).
+\end{align}
+By setting $\theta=\theta^k$ in Eq.\,\ref{eq:EM} and taking the difference of $\Delta \ell^k=\ell -\ell^k$, one obtains: 
+\begin{align}
+\Delta \ell^k[\theta] = \Delta Q^k[\theta] + \Delta S^k[\theta].
+\end{align}
+Here, $\Delta Q^k[\theta] = Q^[\theta] - Q^k[\theta^k]$, and $\Delta S^k[\theta]$ is defined similarly. Since the Gibbs inequality ensures that $\Delta S^k[\theta] \ge 0 \; \forall \; \theta$, the following inequality holds:
+\begin{align}
+\Delta \ell^k[\theta] \ge \Delta Q^k[\theta].
+\end{align}
+Therefore, the update of EM optimization for systematically improving $\ell[\theta]$ can be achieved via: 
+\begin{align}
+\label{eq:EMOptQ}
+\theta^{k+1} = \argmax_{\theta} Q^k[\theta].
+\end{align}
+Next, the EM theory for the continuous stochastic dynamics via Eq.\,\ref{eq:EMOptQ} is translated into a practical algorithm via the eigenbasis decomposition presented earlier. 
+
+Following the transformation of Eq.\,\ref{eq:PathP} into Eq.\,\ref{eq:prodterms}, Eq.\,\ref{eq:EMstart} is written with the eigenbasis decomposition as:
+\begin{align}
+\label{eq:EMEigen}
+\ell[\theta] = \ln {\prod}_{\tau} \langle |\rangle - \ln \frac{\prod_{\tau} \langle |\rangle}{\mathcal{L}[\theta]}.
+\end{align}
+The expectation over the latent trajectories via the parameter set at the $k^{\rm th}$ iteration, $\theta^k$, now involves taking the following sum for the righthand side of Eq.\,\ref{eq:EMEigen}:
+\begin{align}
+\mathbb{E}^k_{X|Y}[\cdot] \equiv \sum_{\substack{\{i_\tau\}}} \sum_{\substack{\{j_\tau\}}} \frac{\prod^k_{\tau} \langle |\rangle}{\mathcal{L}^k}\cdot.
+\end{align}
+Here, the likelihood and bra-opperator-ket terms are indexed by $k$ to indicate that it is the expectation step of the EM algorithm. As such, Eq.\,\ref{eq:EMOptQ} is translated into the following expression based on Eq.\,\ref{eq:EMQ}: 
+\begin{align}
+\label{eq:prodQ}
+\theta^{k+1} = \argmax_{\theta} \sum_{\substack{\{i_\tau\}}} \sum_{\substack{\{j_\tau\}}} \frac{\prod^k_{\tau} \langle |\rangle}{\mathcal{L}^k} \ln {\prod}_{\tau'} \langle |\rangle.
+\end{align}
+In this equation, the dependence on $\theta$ is implied in the $\prod_{\tau'} \langle |\rangle$ term as in Eq.\,\ref{eq:PiTau}. 
+
+The representation of $Q^k[\theta]$ via the eigenbasis in Eq.\,\ref{eq:prodQ} can be more concretely expressed as:
+\begin{align}
+\label{eq:DiracQ}
+Q^k[\theta] = \frac{1}{\mathcal{L}^k} \sum_{\tau} \langle \alpha^k_{t_\tau} | e^{-\bm{H} \Delta t_{\tau} } | \beta^k_{t_{\tau+1}} \rangle.
+\end{align}
+The $\theta$ dependence is now implied in $\bm{H}$. The expected states in Eq.\,\ref{eq:DiracQ} are:
+\begin{align}
+\label{eq:DiracQa}
+\langle \alpha^k_{t_\tau} | &= \sum_j a^k_j(\tau) \langle \psi_j(x) | \\
+\label{eq:DiracQb}
+| \beta^k_{t_\tau} \rangle  &= \sum_i b^k_i(\tau) | \psi_i(x) \rangle.
+\end{align}
+The coefficients in these states for the system at the arrival of the $\tau^{\rm th}$ photon are inferred from the eigen-representation of the path integral:
+\begin{align}
+\label{eq:DiracQaCoeff}
+a^k_j(\tau) &= \sum_{\substack{\{i_{\tau'}, \tau' < \tau \}}} {{\prod}^k_{\tau' < \tau} \langle |\rangle} \langle \psi_j | \bm{y}_{\tau'} | \psi_{i_{\tau'}} \rangle \\
+\label{eq:DiracQbCoeff}
+b^k_i(\tau+1) &= \sum_{\substack{\{j_{\tau'}, \tau' > \tau \}}} {{\prod}^k_{\tau' > \tau} \langle |\rangle} \langle \psi_{j_{\tau'}} | \bm{y}_{\tau'} | \psi_i \rangle.
+%b_{i(\tau')}^k = \sum_{\substack{\{i(\tau > \tau' )\}\\ \{j(\tau > \tau')\}}} \langle \phi_{i(\tau-1)} | \bm{y}_{\tau} | \phi_{j(\tau)} \rangle \\
+%{\prod_{\tau > \tau'} \langle |\rangle^k} 
+\end{align}
+A similar construction has been developed for Markov state models and the forward-backward Baum-Welch algorithm.\cite{Chodera:2011uw}
+
+Finally, we derived in the Supplementary Information that the Gibbs inequality of $\Delta S^k(\theta) \ge 0 \; \forall \; \theta$ still holds in the eigen-decomposition form of the path integral. It is different from the typical analysis with probability distributions that only positive values are involved because the coefficients of eigenvectors at a particular time can be negative.
+
+\section{Evaluation of Functional Derivatives}
+
+%\begin{align}
+%Q^k(\theta) = \frac{1}{\mathcal{L}^k} \sum_{\tau} \langle \alpha_{\tau} | e^{-\bm{H}(\theta) \Delta t_{\tau} } | \beta_{\tau+1} \rangle 
+%\end{align}
+With the parameter dependence implied in $\bm H$ in Eq.\,\ref{eq:DiracQ}, the maximization step of the EM algorithm comes down to solving the following equation for the parameter set $\theta^{k+1}$ of the next iteration: 
+\begin{align}
+\label{eq:QkD}
+ 0 = \frac{1}{\mathcal{L}^k} \left . \sum_{\tau} \frac{\delta}{\delta \theta} \langle \alpha^k_{t_\tau} | e^{-\bm{H} \Delta t_{\tau} } | \beta^k_{t_{\tau+1}} \rangle \right |_{\theta^{k+1}}.
+\end{align}
+
+Unfortunately, the functional dependence on the $\theta$ set that involves $F(x)$ and $D$ is buried within the exponential of the time propagation operator $\bm H$ and a direct extraction of the functional derivatives is prohibitive. To overcome this difficulty, we derived an line-integral approach to evaluate the derivative kernel\cite{Wilcox:1967vr} for which the details are provided in Supplementary Information. In summary, the functional derivatives are calculated as:
+\begin{multline}
+\frac{\delta}{\delta \theta} \langle \alpha^k_{t_\tau} | e^{-\bm{H} \Delta t_{\tau} } | \beta^k_{t_{\tau+1}}\rangle = \\ -\int^{\Delta t_{\tau}}_{0} dt'  \langle \alpha^k_{t_\tau} | e^{-\bm{H} t'} \frac{\delta \bm{H}}{\delta \theta} e^{-\bm{H} (\Delta t_{\tau} -t')}| \beta^k_{t_{\tau+1}} \rangle.
+\end{multline}
+The operator derivative is thus defined through a moving window from $\tau$ to $\tau+1$. By inserting $\bm{1} = \sum_i | \psi_i \rangle \langle \psi_i |$ and using $\langle \psi_i | e^{-\bm{H}t} | \psi_j \rangle = \delta_{ij} e^{-\lambda_i t}$, we obtain the derivatives as:
+\begin{align}
+\label{eq:QkDPart}
+-\sum_{i,j} \int^{\Delta t_{\tau}}_{0} dt'  \langle \alpha^k_{t_\tau} | \psi_i \rangle e^{-\lambda_i t'} \frac{\delta \langle \psi_i | \bm{H} | \psi_j \rangle}{\delta \theta}  e^{-\lambda_j  (\Delta t_{\tau} -t')} \langle \psi_j | \beta^k_{t_{\tau+1}} \rangle.
+\end{align}
+%\begin{align}
+%-\sum_{i,j} a_{i(\tau)} b_{j(\tau+1)} \frac{\delta }{\delta \theta(x)} \langle \psi_i | \bm{H} | \psi_j \rangle \underbrace{\int^{\Delta t_{\tau}}_{0} dt'  e^{-\lambda_i t'}  e^{-\lambda_j (\Delta t_{\tau} -t')} }_{\Gamma_{i,j}(\Delta t)} 
+%\end{align}
+Since only the two exponentials in the above equation have dependence on $t'$, we define the transfer functions ${\Gamma_{ij}^{\tau}}$ after performing the time integration as:
+\begin{equation}
+{\Gamma_{ij}^{\tau}} = 
+\begin{dcases}
+\Delta t_{\tau} e^{-\lambda_i \Delta t_{\tau}} & i = j \\
+\frac{e^{-\lambda_i \Delta t_{\tau}} - e^{-\lambda_j \Delta t_{\tau}}}{\lambda_j - \lambda_i} & i \neq j.
+\end{dcases}
+\end{equation} 
+Putting the result of Eq.\,\ref{eq:QkDPart} in Eq.\,\ref{eq:QkD} and applying Eqs. \ref{eq:DiracQa} and \ref{eq:DiracQb}, one can recognize that the sum over $\tau$ in Eq.\,\ref{eq:QkDPart} leads to the following term:
+\begin{align}
+\mathbb{E}^k_{X|Y}[a_ib_j] =\sum_{\tau} \Gamma_{ij}^{\tau} a^k_i(\tau) b^k_j(\tau+1).
+\end{align}
+Finally, we obtain the equation of derivatives required for performing the maximization step in EM:
+\begin{align}
+\label{eq:Qder}
+\frac{\delta Q^k[\theta]}{\delta \theta} = -\frac{1}{\mathcal{L}^k}\sum_{i,j} \frac{\delta \langle \psi_i | \bm{H} | \psi_j \rangle}{\delta \theta}  \mathbb{E}^k_{X|Y}[a_ib_j].
+\end{align}
+
+With the eigenbasis, the functional derivatives in Eq.\,\ref{eq:Qder} can be performed with the Euler-Lagrange equation:
+\begin{align}
+\frac{\delta \langle \psi_i|\bm{H}|\psi_j \rangle}{\delta F(x)} = \frac{\partial (\psi_i(x)\bm{H}\psi_j(x))}{\partial F(x)} - \frac{d}{dx}\frac{\partial (\psi_i(x)\bm{H}\psi_j(x))}{\partial F'(x)}.
+\end{align}
+Imposing the form of the Hamiltonian of Eq.\,\ref{eq:Hamiltonian} gives the functional derivative with respect to the mean-force profile:
+\begin{align}
+\label{eq:FuncDelF}
+\frac{\delta \langle \psi_i|\bm{H}|\psi_j \rangle}{\delta F(x)} &= \frac{D}{2} \left( F(x)\psi_i(x)\psi_j(x) - \frac{d}{dx}\left( \psi_i(x)\psi_j(x) \right) \right).
+\end{align}
+Since the Hamiltonian and its eigenvalues scale linearly with the diffusion coefficient, the derivative is simply
+\begin{align}
+\label{eq:FuncDelD}
+\frac{d \langle \psi_i|\bm{H}|\psi_j \rangle}{d D} & = \frac{\lambda_i}{D} \delta_{ij}.
+\end{align}
+
+\section{The EM Algorithm for Learning Langevin Dynamics from smFRET Measurements}
+
+With the functional derivatives attained, the maximization step is accomplished by setting the derivatives of Eq.\,\ref{eq:Qder} to zero. First, the functional derivatives with respect to the mean force $F(x)$ in Eq.\,\ref{eq:FuncDelF} is applied to Eq.\,\ref{eq:Qder} to reach the final form of the maximization step: 
+\begin{align}
+\mathbb{E}^k_{X|Y}\left [F^{k+1}(x)\frac{D}{2} \psi_i(x)\psi_j(x) - \frac{D}{2}\frac{d}{dx}\left( \psi_i(x)\psi_j(x) \right) \right ] &= 0.
+\end{align}
+Therefore, the update equation for the mean-force profile in an EM iteration is:
+\begin{align}
+F^{k+1}(x) &= \frac{\frac{d}{dx} (\mathbb{E}^k_{X|Y} [ \delta(x-X) ])}{\mathbb{E}^k_{X|Y} [ \delta(x-X) ] }.
+\end{align}
+In this case, it is convenient to update the equilibrium probability density in EM:
+\begin{align}
+p_{\rm eq}^{k+1}(x) &=\mathbb{E}^k_{X|Y} \left[ \delta(x-X) \right] \\
+&= p^k_{\rm{eq}}(x) \sum_{i,j} \mathbb{E}^k_{X|Y}[a_ib_j] \phi_i(x)\phi_j(x).
+\end{align}
+The optimization for the scalar $D$ is then performed by a line search\cite{Nocedal:2006uv} for the maximal likelihood with the new $p_{\rm eq}^{k+1}(x)$ and Eq.\,\ref{eq:FuncDelD}. This EM scheme is summarized in Algorithm \ref{alg:EM}.
+
+\begin{algorithm}[h!]
+\caption{\label{alg:EM} Expectation-Maximization Statistical Learning for $F(x)$ and $D$ from smFRET}
+\begin{algorithmic}
+\Procedure{EM}{Photon arrival times $\{t_{\tau} | \forall \tau \in [0,N_{\rm P}] \}$}
+\State Initialize $p^0_{\rm eq} \propto \cos^2(x)$
+\Repeat
+\State Eigen-decompose the Hermitian $\bm H$ for $\Psi$ and $\Lambda$ %\gets $\Call{sFEM}{F(x),D}
+\State Construct photon arrival operator $Y_{a,d} = \Psi \bm{y}_{a,d} \Psi^ \dagger$
+\State Evaluate likelihood via $Ye^{-\Lambda t}Y \dots e^{-\Lambda t}Y$
+\State Determine $\ell [\theta] = \sum_{\tau} |\alpha_{\tau}|$ via normalization
+\State Infer the latent states $\langle \alpha(t)|,|\beta(t) \rangle$
+\State Collect statistics of $\mathbb{E}^k_{X|Y}[a_ib_j] = \sum_{\tau}\Gamma^{\tau}_{ij}$
+\State Update $p_{\rm{eq}}^{k+1} = p^k_{\rm{eq}}(x) \sum_{ij} \mathbb{E}^k_{X|Y}[a_ib_j] \phi_i(x)\phi_j(x) $
+\State Line search $D^{k+1} = \argmax_D \ell[p^{k+1}_{\rm eq},D]$
+\Until{$\ell[\theta^k] - \ell[\theta^{k-1}] < \num{1e-5} $}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+The proposed statistical learning problem of Langevin dynamics from smFRET data is naturally underdetermined because we attempt to extract a continuous profile from a finite number of photons. A Bayesian prior is thus required to break the degeneracy in the parameter set (such a device was used in a different context for the number of discrete states\cite{Watkins:2005hba,Bayarri:2008tf}. With the prior, the posterior function for parameter optimization becomes:
+\begin{align}
+\mathcal{L}(\theta) = \mathcal{P}(Y(t); \theta) \frac{\mathcal{P}(\theta)}{\mathcal{P}(Y(t))}.
+\end{align}
+A criterion for choosing the prior is to guide the optimization towards $F(x)$ profiles that imply the least amount information of dynamics. The goal is to prevent the statistical learning from over-fitting and over-interpreting the measured data. As such, we select the prior based on maximum trajectory entropy. For Langevin dynamics at equilibrium, the trajectory entropy has been derived\cite{Haas:2013uj} and the prior is hence:
+\begin{align}
+\label{eq:HaasS}
+\mathcal{P}(F(x),D) = e^{-\eta_FS[F(x),D)]} = e^{-\eta_F D\langle F^2(x) \rangle_{\rm{eq}} }.
+\end{align}
+$S[\cdot]$ is the trajectory entropy functional, and $\eta_F$ is the effective temperature specifying the regularization weighting in the optimization. The temperature is set heuristically to the lowest possible value sufficient for maintaining a numerically stable EM iteration. For the test cases examined in this work, $\eta_F = \num{2e-7}$ was found to be sufficient to ensure numerical stability and an order of magnitude higher or lower provides nearly equivalent results.   
+
+To incorporate the prior into the EM framework, the ensemble average of force squared in Eq. \, \ref{eq:HaasS} is approximated by the path expectation at each EM iteration:
+\begin{align}
+ -\eta_F D\langle F^2(x) \rangle_{\rm{eq}} \simeq  - \eta_F \mathbb{E}^k_{X|Y} \left[DF^2(x) \right].
+\end{align}
+The modified update function for the log posterior is then found by setting the expected functional derivative with respect to force to zero
+\begin{align}
+0 = \frac{\delta}{\delta F} \mathbb{E}^k_{X|Y}  \left[ \ell[F(x)] - \eta_F D F^2(x)  \right ]
+\end{align}
+We then solve for the modified EM update equation for equilibrium probability\begin{align}
+\label{eq:peqUpdate}
+p_{\rm eq}^{k+1}(x)=\left(\mathbb{E}^k_{X|Y} \left[\delta(x-X) \right]\right)^{1/(1+\eta_FD)}.
+\end{align}
+In practice, only the equilibrium probability is required to construct the eigenvector basis at each iteration and Eq.\,\ref{eq:peqUpdate} shows that the net effect of the prior is to smooth the maximum likelihood EM equation by taking the profile to an exponent just slightly less than 1.  For the finite domain used in the spectral finite element method, the probability is initialized to a $\propto \cos^2(x\pi/2L)$ distribution of maximum trajectory entropy with zero probability at the boundary of the domain.
+%to impose Dirichlet boundary conditions on the resulting profile. 
+
+\begin{figure}[t!]
+\centering
+\includegraphics{Figure6.png}
+\caption[Contours of optimized trajectory from smFRET]{\label{fig:InferTrajopt} EM statistical learning of PMF and $D$ from the photon-arrival time trajectory of a simulated smFRET experiment. Only the initial section of 0.04 s of the 3.3 s total trajectory is shown. (top) The trace of photon arrivals per millisecond recorded in the donor and acceptor channels. (bottom-right) Time-averaged probability density of $x$ in the inferred probability density of trajectories, $p_{\rm{eq}}(x) = 1/t \int_0^{t} \delta(x - x')$. (bottom-left)  The contours of the product of the inferred $\langle \alpha(t) | x \rangle$ and $\langle x | \beta(t) \rangle$ vectors, i.e., $\mathcal{P}(X(t)|Y(t); F(x), D)$, with the color intensity using the log-scale. The solid line is the ``true'' distance trajectory. The orange crosses are the MIM estimates via adaptive time binning with a relative standard deviation of $\sigma=0.1$.\cite{Watkins:2004cia,Watkins:2006bu}}
+\end{figure}
+
+The calculation of $\mathbb{E}_{X|Y} [ \delta(x-X) ]$ as well as its derivative if needed can be performed simply by matrix multiplication if the matrix $\Psi$ is constructed with the eigenvectors oriented in the columns and the inferred state matrix $\mathbb{E}^k_{X|Y}[a_ib_j]$:
+\begin{align}
+p_{\rm eq}^{k+1}(x) = \tr ( \Psi \mathbb{E}^k_{X|Y}[a_ib_j] \Psi^ \dagger).
+\end{align}
+For trajectories composed of ~80,000 photons, convergence in likelihood typically requires an exhaustive number of 50,000 iterations due to the sub-linearity of the EM algorithm.\cite{Xu:1996ie}
+
+Fig.\,\ref{fig:InferTrajopt} shows a typical sequence of photon data and the corresponding trajectory of the latent variable in the simulation. The comparison of the optimized profile of equilibrium distribution with that corresponds to the reference PMF indicates the ability of the EM scheme we devised to learn about the continuous profile of PMF from the photon sequence. Fig.\,\ref{fig:InferTrajopt} also shows that the latent trajectory can be inferred accurately with the optimized parameter set. With an explicit consideration of each arrived photon, including the dark period waited before, much of the information of the underlying dynamics can indeed be extracted from the indirect measurement of smFRET. On the other hand, time-binning of any kind inevitably leads to information loss; even the MIM method cannot retrieve this level of mechanistic details as seen in Fig.\,\ref{fig:InferTrajopt}. 
+
+\section{Results and Discussions}
+
+The EM algorithm we developed for continuous stochastic dynamics has many similar features as in the self-consistent mean field theory in polymer physics that both aim to search for the extrema of a functional.  The fundamental property of EM that the likelihood is a strictly increasing quantity ensures that the optimization is stable, robust and reliable, despite the fact that the convergence rate is sub-linear.\cite{Xu:1996ie}
+
+\begin{figure}[hb!]
+\centering
+\label{fig:peqs}
+\includegraphics{Figure7.png}
+\caption[Converged equilibrium probability from smFRET]{\label{fig:Peqs}The $p_{\rm{eq}}(x)$ profiles of the converged results of EM optimization for 12 independent trajectories of ~80,000 photons. The trajectories were simulated with the PMF and $D$ shown in Fig.\,\ref{fig:VrefFRET} at different resolutions of the smFRET experiment. (a) The results using the default smFRET parameters listed in Table\,\ref{tab:Parameters}, i.e., the 1x intensity. (b) The results using the 5x intensity. $\eta_F=\num{2e-7}$ was employed for all runs of EM optimization}
+\end{figure} 
+
+To illustrate the robustness of EM against the stochasticity in smFRET data, twelve independent photon trajectories were simulated at four different resolutions to compare their results of statistical learning. The total number of EM optimization for generating the results of this section is thus forty eight. The behaviors of learning the Langevin parameters and kinetic behaviors are summarized in Figs.\,\ref{fig:Peqs}--\ref{fig:Ks}. 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics{Figure8.png}
+\caption[Converged PMF from smFRET]{\label{fig:Vs} The PMF profiles of the converged results of EM optimization for 12 independent trajectories of ~80,000 photons. The trajectories were simulated with the PMF and $D$ shown in Fig.\,\ref{fig:VrefFRET} at different resolutions of the smFRET experiment. (a) The results using the default smFRET parameters listed in Table\,\ref{tab:Parameters}, i.e., the 1x intensity. (b) The results using the 5x intensity. $\eta_F=\num{2e-7}$ was employed for all runs of EM optimization.}
+\end{figure} 
+
+The optimized probability densities of the equilibrium distribution and PMFs for each of the twelve trajectories are plotted in Fig.\,\ref{fig:Peqs} and Fig.\,\ref{fig:Vs}, respectively for the cases of 1x and 5x intensity, cf. Table\,\ref{tab:Parameters}. The averaged and reference profiles are also shown in the figures for comparison. It can be seen that at both resolutions, there exhibits considerable variation in the results of statistical learning due to the noise in stochastic trajectories and photon statistics. Nonetheless, the number of meta-stable states and their locations are consistently reproduced. Since resolving the dynamics associated with the middle state requires a higher temporal resolution, its inference shows more significant deviation from the ``true'' values as compared to the short-distance ($x=0.8$) and the long-distance ($x=1.2$) states as seen in Fig.\,\ref{fig:Peqs} and Fig.\,\ref{fig:Vs}. It is also clear from Fig.\,\ref{fig:Peqs}(a) and Fig.\,\ref{fig:Vs}(a) that at the typical resolution of smFRET experiments (1x intensity), the middle state can barely be resolved. Although each EM optimization for an individual trajectory does predict higher barriers and have the middle-state more resolved, variances amongst the 12 trajectories, and hence their inferred locations of meta-stable states and barrier heights, muddle these information in the averaged result. If the resolution of the photon data was reduced to 0.5x intensities, the ability of resolving the middle state in Fig.\,\ref{fig:VrefFRET} disappears. The corresponding EM results for the other resolutions examined in this work are shown in Supplementary Information. With 5x intensities, Fig.\,\ref{fig:Peqs}(b) and Fig.\,\ref{fig:Vs}(b) show that the same number of photons in a 5 times shorter duration carries more information for resulting the finer details of the local shapes and curvatures of the profiles of the PMF and equilibrium probability density. The averaged profiles resulting from the 5x EM capture the answer quite closely. Next, we present the results of learning dynamical properties of $D$, mean first passage times, and kinetic rates. 
+
+The statistically learned diffusion coefficients for the trajectory sets simulated at different resolutions are summarized in the boxplot of Fig.\,\ref{fig:Ds}. The boxplot represents the variation in a data set by showing the average as the red horizontal line, the 25 \% quartile of the data above and below the average by the unfilled blue bar, the upper and lower bounds of the continuous spread of data as black caps, and the outliers as red crosses. It can be seen that the maximum entropy prior for regularizing the EM optimization causes systematic bias of $D$ towards lower values. Without sufficient information in the data, the trajectory entropy penalty of $\langle F^2(x) \rangle$ tends to lower PMF barriers and the diffusion coefficient is hence underestimated. On the other hand, Fig.\,\ref{fig:Ds} also shows that if the data does provide information for resolving the PMF barriers, such as in the case of 5x intensities, the resulting $D$ would have a higher value. The PMF and $D$ work in balance to control the transition time-scales of the system and the estimation of kinetic rates is actually much less biased ( as presented later). Although the Bayesian prior approach overcomes the degeneracy issue associated with learning a continuous function, it does introduce bias into the final solution under data deficiency.\cite{FIRTH:1993hg} Further investigation indicates that the converged diffusion coefficient is relatively insensitive to the $\eta_F$ parameter over a wide range of values from $10^{-5} ~\text{to}~10^{-7}$ after the establishment of numerical stability. Fig.\,\ref{fig:Ds} shows that with a 5x intensity, the bias in $D$ can start to be overcome by the richer dynamics information carried in the photon data.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{Figure9.png}
+\caption[Optimized diffusion constant from smFRET]{\label{fig:Ds} Boxplots of the converged diffusion coefficients from EM optimization for the 12 independent trajectories of ~80,000 photons simulated at each photon resolution. At each level of intensity, the averaged value of $D$ over the statistical learning of 12 trajectories is represented as the red horizontal line, the 25 \% quartile of the values above and below the average is shown by the unfilled blue bar, the upper and lower bounds of the continuous spread of  $D$ are labeled as black caps, and the outliers are denoted as red crosses. $\eta_F = \num{2e-7}$ was employed for all runs of EM optimization.}
+\end{figure} 
+
+%\section{Mean First Passage Times and Kinetic Rates}
+The kinetic rates of transition between the meta-stable states can be determined by calculating the mean first passage times (MFPTs) as a post-processing step after the PMF and $D$ being optimized with EM. It is important to emphasize the number and locations of meta-stable states are read off from the EM converged profiles without assuming prior knowledge. We calculate the MFPT from state A at position $x_{\rm A} \approx 0.8$ to state B at position $x_B \approx 1.2$ via:\cite{Gardiner:2004tb}
+\begin{align}
+{\rm MFPT}(x_{\rm A} \to x_{\rm B}) = k_{{\rm A} \to {\rm B}}^{-1} = \frac{1}{D} \int_{x_{\rm A}}^{x_{\rm B}} dx \; e^{V(x)} \int_{x_{\rm L}}^{x} dx' \; e^{-V(x')},
+\end{align}
+where the subscripts ${\rm L}$ and ${\rm R}$ denote the left and right ends of the domain of the system dynamics, respectively. For the reverse transition, the formula reads
+\begin{align}
+{\rm MFPT}(x_{\rm B} \to x_{\rm A}) = k_{{\rm B} \to {\rm A}}^{-1} = \frac{1}{D} \int_{x_{\rm B}}^{x_{\rm A}} dx \; e^{V(x)} \int_{x_{\rm R}}^{x} dx' \; e^{-V(x')}.
+\end{align}
+Or, recognizing $\int_x^{x_{\rm R}} = \int_{x_{\rm L}}^{x_{\rm R}} - \int_{x_{\rm L}}^x$, $k_{{\rm B} \to {\rm A}}^{-1}$ can be calculated alternatively as:
+\begin{align}
+ k_{{\rm B} \to {\rm A}}^{-1} = \frac{1}{D} \int_{x_{\rm A}}^{x_{\rm B}} dx \; e^{V(x)} \left ( \int_{x_{\rm L}}^{x_{\rm R}} dx' \; e^{-V(x')} - \int_{x_{\rm L}}^{x} dx' \; e^{-V(x')} \right ).
+\end{align}
+
+\begin{table}[h]
+\caption{\label{tab:RxnRates}Mean-first-passage-times (MFPTs) and reaction rates for the reference potential shown in Fig.\,\ref{fig:VrefFRET} with $D=500 ~\rm s^{-1}$.}
+\begin{tabular}{c|S[table-format=3.3(0)e+1]s[table-unit-alignment = left]}
+\toprule
+${\rm MFPT}(x_{\rm A} \to x_{\rm B})$ & 001.959151812758e-3 & \s \\
+${\rm MFPT}(x_{\rm B} \to x_{\rm A})$ & 0.9394351524901243e-3 & \s \\
+\midrule
+$k_{{\rm A} \to {\rm B}}$ & .5104249673189884e+03 & \per\s \\
+$k_{{\rm B} \to {\rm A}}$ & 1.064469428623507e+03 & \per\s \\
+\midrule
+$k_{{\rm A} \to {\rm B}}/k_{{\rm B} \to {\rm A}}$ & 0.479511157008081 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+By using the reference PMF and diffusion coefficient of Fig.\,\ref{fig:VrefFRET}, we calculate the MFPTs and kinetic rates for the transition between states A and B. These values of the actual latent dynamics are summarized in Table\,\ref{tab:RxnRates}. The same post-processing evaluation of MFPT is also performed on the converged PMF and $D$ from the EM optimization of the aforementioned set of 12 trajectories at each data resolution. The results are summarized in the boxplots of Fig.\,\ref{fig:Ks}. Despite the variance in the diffusion coefficients deduced from these trajectories as seen in Fig.\,\ref{fig:Ds}, the kinetic rates are quantitatively reproduced with high accuracy even at the lowest resolution. The little bias, if any, in the inferred kinetic rate can be understood as a nice consequence of the balance between PMF and $D$ in the EM statistical learning discussed earlier.
+
+%In fact, the precision in the EM learning of kinetic rates does not increase with resolution because at at set number of photons $N_{\mathrm{P}}$, the total trajectory time is reduced and there are less reactive events to make an estimate of this Poisson process ($\sigma^2_{k} \sim {1}/{t_{\mathrm{exp}}}$).  However, the reaction rate are within margin of error and without bias because D itself is determined by an unbiased maximum likelihood search for a given free energy surface.  In effect, this D optimization seeks to find the correct reaction rates from the smFRET because $D \propto k$.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics{Figure10.png}
+\caption[Kinetic rates from smFRET]{\label{fig:Ks} Boxplots of the kinetic rate $k_{{\rm A}\to {\rm B}}$ and $k_{{\rm B} \to {\rm A}}$ from mean-first-passage-time calculations using the converged PMF and $D$ of EM optimization. The data include 12 independently simulated trajectories with ~80,000 photons at each data resolution. For each level of intensity, the average values of kinetic rates over 12 trajectories are represented as the red horizontal lines, the 25\% quartile of the rate data above and below the average is shown by the unfilled blue bar, the upper and lower bounds of the continuous spread of the rates are labeled as black caps, and the outliers are denoted as red crosses. $\eta_F = \num{2e-7}$ was employed for all runs of EM optimization.}
+\end{figure} 
+
+\section{Conclusion}
+
+In this work, we have developed a Bayesian inference framework to learn about the continuous stochastic dynamics of Langevin equation from time-dependent single-molecule FRET experiments. Our theory explicitly and rigorously incorporates the two layers of stochasticity separating the dynamics information of interest from the fluorescence single-molecule data---the statistical photon detections and the stochastic thermal fluctuations. The resulting EM algorithm hence allows the entire PMF profile and diffusion coefficient of protein conformational changes to be extracted from the photon colors and arrival times recorded in a smFRET experiment, without any presumed profile shape nor kinetic models; this method thus enables unanticipated discoveries. The capability to extract the conformational diffusion coefficient means that the forces that govern the stochastic dynamics can now be quantified directly from single-molecule data and is a significant milestone. Together with the deterministic force given by the PMF profile, the conformational {\em dynamics} can now be quantitatively determined at the single-molecule level. This work thus represents an important step forward advancing single-molecule spectroscopy.
+
+A series of analytical and numerical advances has been accomplished to achieve the capability of Bayesian inference for continuous dynamics. Firstly, the numerical path integration of the likelihood functional, which would have involved bookkeeping infinite terms for continuous dynamics, is made possible by integrating forward the time-independent terms and incorporating the operator of observing darkness into the Fokker-Planck equation of Langevin dynamics, Eq.\,\ref{eq:FPE}. Secondly, the Fokker-Planck equation with the dark operator is transformed into a time-symmetrized form of Eqs.\,\ref{eq:Hoperator} and \ref{eq:Hamiltonian}. The Hermitian property of this representation allows eigenvectors with orthonormality and completeness to be acquired for convenient decomposition of the Langevin time propagation coupled with photon statistics in Eq.\,\ref{eq:PathP}. The eigen decomposition reduces the otherwise infinite operations in continuous space to the finite number of basis sets. Combining these two aspects transforms the path-integral calculations of the likelihood functional into matrix operations. Thirdly, we generalized the EM scheme originally developed for discrete-state statistical learning to the space of continuous profiles by deriving the analytical derivatives of the likelihood functional with respect to the PMF profile, Eqs.\,\ref{eq:FuncDelF} and \ref{eq:FuncDelD}. Our EM algorithm for continuous stochastic dynamics, Algorithm \ref{alg:EM}, is also analogous to generalizing the Kalman filter for the statistical inference on linear dynamical systems (linearity in the sense that the time propagator is independent of the system position\cite{Wainwright:2007du,Anonymous:Ejt2aS2v}) to handle arbitrary potentials of $x$ and arbitrary probabilistic information from the experimental observations. Lastly and equally importantly, a trajectory-entropy motivated prior is imposed to ensure the numerical stability of EM for Langevin dynamics by breaking the solution degeneracy within the space of continuous PMF profiles.
+
+As a result, extracting the governing PMF and diffusion coefficient of protein dynamics from smFRET experiments can now be accomplished. Conversely, an experimentalist can also use this framework to establish the data quality required for resolving such mechanistic features as the number and location of meta-stable states as well the kinetic rates connecting them. The ability to acquire the mechanistic details of protein dynamics may facilitate the engineering of the functionalities of enzymes and protein machines.\cite{Wang:2008wl}
+
+The derivation presented in this work exemplifies the manner by which the specific features of smFRET experiments are utilized to construct the operators associated with photon statistics. Although the theoretical development and numerical illustration presented in this work focus on the Langevin dynamics with a constant diffusion coefficient, the generalization to $x$-dependent diffusion is expected to be relatively uncomplicated. The framework can also be extended straightforwardly into multiple dimensions if several separate signals of the system could be measured simultaneously.\cite{Uphoff:2010fd,Chodera:2011cc}. An essential requirement for such applications is that time propagation of the system can be made symmetric so that an eigenbasis set can be constructed for transforming a continuous path integral into matrix multiplications. Extension of our developments to other classes of data types obtained experimentally or computationally can also be achieved readily provided that the information (observation) operator $\bm{y}$ is defined. Examples of other data types include the force and position trajectories measured in single-molecule pulling experiments,\cite{Mossa:2009fz} the many short bursts of trajectories in specific types of molecular simulations,\cite{Anonymous:NH8yUbI6,Wells:1983ts} and potentially quantum dynamics measurements due to the similarities in the path-integral framework.\cite{Feynman:2012wb} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The "Acknowledgement" section can be given in all manuscript
+%% classes.  Rather than use \section, an appropriate macro is
+%% provided that will always work.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{acknowledgement}
+
+We would like to thank Attila Szabo for helpful discussions and Berend Smit for advices in preparing the manuscript.  We thank Jeffrey A.\,Hanson and Thomas E.\,Morrell for the assistance in understanding the experimental setup of smFRET. This work is supported by the Princeton University and also by the University of California at Berkeley.
+\end{acknowledgement}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The same is true for Supporting Information, which should use the
+%% \suppinfo macro.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{suppinfo}
+Details on the numerical methods used in the simulation of the Langevin Dynamics and smFRET trajectories, formula for the Maximum Information method, and framework of the spectral finite element method are provided.  Also included is a symbol list.
+\end{suppinfo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The appropriate \bibliography command should be placed here.
+%% Notice that the class file automatically sets \bibliographystyle
+%% and also names the section correctly.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliography{biblio_JPC}
+
+\end{document}

@@ -1,0 +1,22 @@
+\chapterimage{head2.png} % Chapter heading image
+\chapter{Spectral Finite Element Method}
+\section{Digonalization of the operator}
+\begin{definition}[Basis functions]
+\begin{align}
+        \psi^0_i(x) &= \rho_{\rm eq}(x) \phi^0_i(x) \\
+        \phi^0_i(x) &= \sum_n c^0_n u_n(x).
+\end{align}
+\label{basisfunctions}
+\end{definition}
+
+\begin{definition}[Eigenvector matrix]
+\begin{equation}
+\Psi=
+\begin{bmatrix}
+\vert & \vert &  & \vert \\
+\psi_1(x) & \psi_2(x) & \cdots & \psi_{N_v}(x) \\
+\vert & \vert &  & \vert 
+\end{bmatrix}
+\end{equation}
+\label{eigenvectormatrix}
+\end{definition}
