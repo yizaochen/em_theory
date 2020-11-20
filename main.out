@@ -1,4 +1,12 @@
-\BOOKMARK [0][-]{chapter.1}{Spectral Finite Element Method}{}% 1
-\BOOKMARK [1][-]{section.1.1}{Digonalization of the operator}{chapter.1}% 2
-\BOOKMARK [0][-]{chapter.2}{EM Algorithm}{}% 3
-\BOOKMARK [1][-]{section.2.1}{Update the equilibrium probability density}{chapter.2}% 4
+\BOOKMARK [0][-]{chapter.1}{Langevin Dynamics}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Basic Equation}{chapter.1}% 2
+\BOOKMARK [0][-]{chapter.2}{Hidden Markov Model}{}% 3
+\BOOKMARK [1][-]{section.2.1}{Graphical Model}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.2}{Log-likelihood}{chapter.2}% 5
+\BOOKMARK [0][-]{chapter.3}{Spectral Finite Element Method}{}% 6
+\BOOKMARK [1][-]{section.3.1}{Domain of sFEM}{chapter.3}% 7
+\BOOKMARK [1][-]{section.3.2}{Weight function, orthogonality and norm}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.3}{Diagonalization of the operator}{chapter.3}% 9
+\BOOKMARK [0][-]{chapter.4}{EM Algorithm}{}% 10
+\BOOKMARK [1][-]{section.4.1}{The General EM Algorithm}{chapter.4}% 11
+\BOOKMARK [1][-]{section.4.2}{Update the equilibrium probability density}{chapter.4}% 12

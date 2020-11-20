@@ -1,14 +1,34 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {english}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {1}Spectral Finite Element Method}{5}{chapter.1}%
+\contentsline {chapter}{\numberline {1}Langevin Dynamics}{5}{chapter.1}%
 \ttl@starttoc {default@1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.1}Digonalization of the operator}{5}{section.1.1}%
+\contentsline {section}{\numberline {1.1}Basic Equation}{5}{section.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}EM Algorithm}{7}{chapter.2}%
+\contentsline {chapter}{\numberline {2}Hidden Markov Model}{7}{chapter.2}%
 \ttl@stoptoc {default@1}
 \ttl@starttoc {default@2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Update the equilibrium probability density}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.1}Graphical Model}{7}{section.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Log-likelihood}{7}{section.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Spectral Finite Element Method}{13}{chapter.3}%
+\ttl@stoptoc {default@2}
+\ttl@starttoc {default@3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Domain of sFEM}{13}{section.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Weight function, orthogonality and norm}{13}{section.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Diagonalization of the operator}{14}{section.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}EM Algorithm}{17}{chapter.4}%
+\ttl@stoptoc {default@3}
+\ttl@starttoc {default@4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}The General EM Algorithm}{17}{section.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Update the equilibrium probability density}{17}{section.4.2}%
 \contentsfinish 
