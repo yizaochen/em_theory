@@ -1,12 +1,28 @@
 \BOOKMARK [0][-]{chapter.1}{Langevin Dynamics}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Basic Equation}{chapter.1}% 2
-\BOOKMARK [0][-]{chapter.2}{Hidden Markov Model}{}% 3
+\BOOKMARK [0][-]{chapter.2}{Bayesian Inference Framework}{}% 3
 \BOOKMARK [1][-]{section.2.1}{Graphical Model}{chapter.2}% 4
-\BOOKMARK [1][-]{section.2.2}{Log-likelihood}{chapter.2}% 5
-\BOOKMARK [0][-]{chapter.3}{Spectral Finite Element Method}{}% 6
-\BOOKMARK [1][-]{section.3.1}{Domain of sFEM}{chapter.3}% 7
-\BOOKMARK [1][-]{section.3.2}{Weight function, orthogonality and norm}{chapter.3}% 8
-\BOOKMARK [1][-]{section.3.3}{Diagonalization of the operator}{chapter.3}% 9
-\BOOKMARK [0][-]{chapter.4}{EM Algorithm}{}% 10
-\BOOKMARK [1][-]{section.4.1}{The General EM Algorithm}{chapter.4}% 11
-\BOOKMARK [1][-]{section.4.2}{Update the equilibrium probability density}{chapter.4}% 12
+\BOOKMARK [1][-]{section.2.2}{Forward algorithm}{chapter.2}% 5
+\BOOKMARK [2][-]{subsection.2.2.1}{Probability Meaning}{section.2.2}% 6
+\BOOKMARK [2][-]{subsection.2.2.2}{alpha-t0}{section.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.2.3}{alpha-t1}{section.2.2}% 8
+\BOOKMARK [2][-]{subsection.2.2.4}{alpha-t2}{section.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.5}{alpha-t3}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.6}{alpha-t4}{section.2.2}% 11
+\BOOKMARK [1][-]{section.2.3}{Scaling Factor}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.4}{Backward algorithm}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.4.1}{Probability Meaning}{section.2.4}% 14
+\BOOKMARK [2][-]{subsection.2.4.2}{beta-4}{section.2.4}% 15
+\BOOKMARK [2][-]{subsection.2.4.3}{beta-3}{section.2.4}% 16
+\BOOKMARK [2][-]{subsection.2.4.4}{beta-2}{section.2.4}% 17
+\BOOKMARK [2][-]{subsection.2.4.5}{beta-1}{section.2.4}% 18
+\BOOKMARK [1][-]{section.2.5}{Likelihood function by forward algorithm}{chapter.2}% 19
+\BOOKMARK [1][-]{section.2.6}{Posterior probability}{chapter.2}% 20
+\BOOKMARK [0][-]{chapter.3}{Spectral Finite Element Method}{}% 21
+\BOOKMARK [1][-]{section.3.1}{Domain of sFEM}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.2}{Weight function, orthogonality and norm}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.3}{Diagonalization of the operator}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.4}{Photon operator and Emission probability}{chapter.3}% 25
+\BOOKMARK [0][-]{chapter.4}{EM Algorithm}{}% 26
+\BOOKMARK [1][-]{section.4.1}{The General EM Algorithm}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.2}{Update the equilibrium probability density}{chapter.4}% 28

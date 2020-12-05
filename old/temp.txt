@@ -1,0 +1,31 @@
+\subsection{beta-1}
+\begin{definition}[$\left| \beta_{t_1} \right>$]
+\begin{equation}
+        \left|\beta_{t_1}  \right> =  \left| e^{-\textbf{H}\Delta t} \textbf{y}_3 |\beta_{t_3} \right>
+\end{equation}
+The probability meaning is
+\begin{equation}
+           \left( \left<x_1 |\beta_{t_1}  \right> \right)^2 = p(y_3, y_4 | x_1)
+\end{equation}
+\begin{center}
+        \includegraphics[scale=0.6]{ch2/beta_1_graphical.pdf}
+\end{center}       
+\end{definition}
+
+\begin{definition}[$\left| \hat{\beta}_{t_1} \right>$]
+\begin{equation}
+        \left|\hat{\beta}_{t_1}  \right> =  \frac{\left| e^{-\textbf{H}\Delta t} \textbf{y}_3 |\hat{\beta}_{t_3} \right>}{c_3}
+\end{equation}
+where $c_3$ is the scaling factor computed in the forward part, as you can see in eq(\ref{eq:scalefactor}), and 
+the probability meaning is
+\begin{equation}
+        \left(\left<x_1|\hat{\beta}_{t_{2}} \right>\right)^2 = \frac{p(y_3, y_4|x_1)}{p(y_3|y_1,y_1)} 
+        =  \frac{ (\left<x_3|\beta_{t_{2}} \right>)^2 }{ c_3^2 }
+\end{equation}
+\begin{center}
+        \includegraphics[scale=0.45]{ch2/beta_1_hat.png}
+\end{center}
+\begin{equation}
+        p(x_1|\textbf{y}) = (\left<\hat{\alpha}_{t_{2}}|x \right>)^2 \left(\left<x|\hat{\beta}_{t_{2}} \right>\right)^2
+\end{equation} 
+\end{definition}

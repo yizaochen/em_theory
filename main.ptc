@@ -6,29 +6,61 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Basic Equation}{5}{section.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Hidden Markov Model}{7}{chapter.2}%
+\contentsline {chapter}{\numberline {2}Bayesian Inference Framework}{7}{chapter.2}%
 \ttl@stoptoc {default@1}
 \ttl@starttoc {default@2}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.1}Graphical Model}{7}{section.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Log-likelihood}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.2}Forward algorithm}{7}{section.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Spectral Finite Element Method}{13}{chapter.3}%
+\contentsline {subsection}{\numberline {2.2.1}Probability Meaning}{7}{subsection.2.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.2}alpha-t0}{8}{subsection.2.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.3}alpha-t1}{9}{subsection.2.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.4}alpha-t2}{11}{subsection.2.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.5}alpha-t3}{13}{subsection.2.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.6}alpha-t4}{14}{subsection.2.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Scaling Factor}{16}{section.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Backward algorithm}{17}{section.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.1}Probability Meaning}{17}{subsection.2.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.2}beta-4}{17}{subsection.2.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.3}beta-3}{17}{subsection.2.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.4}beta-2}{19}{subsection.2.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.5}beta-1}{20}{subsection.2.4.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Likelihood function by forward algorithm}{21}{section.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}Posterior probability}{21}{section.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Spectral Finite Element Method}{23}{chapter.3}%
 \ttl@stoptoc {default@2}
 \ttl@starttoc {default@3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Domain of sFEM}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.1}Domain of sFEM}{23}{section.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Weight function, orthogonality and norm}{13}{section.3.2}%
+\contentsline {section}{\numberline {3.2}Weight function, orthogonality and norm}{24}{section.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Diagonalization of the operator}{14}{section.3.3}%
+\contentsline {section}{\numberline {3.3}Diagonalization of the operator}{24}{section.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}EM Algorithm}{17}{chapter.4}%
+\contentsline {section}{\numberline {3.4}Photon operator and Emission probability}{25}{section.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}EM Algorithm}{29}{chapter.4}%
 \ttl@stoptoc {default@3}
 \ttl@starttoc {default@4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}The General EM Algorithm}{17}{section.4.1}%
+\contentsline {section}{\numberline {4.1}The General EM Algorithm}{29}{section.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Update the equilibrium probability density}{17}{section.4.2}%
+\contentsline {section}{\numberline {4.2}Update the equilibrium probability density}{29}{section.4.2}%
 \contentsfinish 
