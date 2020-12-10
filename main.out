@@ -16,13 +16,12 @@
 \BOOKMARK [2][-]{subsection.2.4.3}{beta-3}{section.2.4}% 16
 \BOOKMARK [2][-]{subsection.2.4.4}{beta-2}{section.2.4}% 17
 \BOOKMARK [2][-]{subsection.2.4.5}{beta-1}{section.2.4}% 18
-\BOOKMARK [1][-]{section.2.5}{Likelihood function by forward algorithm}{chapter.2}% 19
-\BOOKMARK [1][-]{section.2.6}{Posterior probability}{chapter.2}% 20
-\BOOKMARK [0][-]{chapter.3}{Spectral Finite Element Method}{}% 21
-\BOOKMARK [1][-]{section.3.1}{Domain of sFEM}{chapter.3}% 22
-\BOOKMARK [1][-]{section.3.2}{Weight function, orthogonality and norm}{chapter.3}% 23
-\BOOKMARK [1][-]{section.3.3}{Diagonalization of the operator}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.4}{Photon operator and Emission probability}{chapter.3}% 25
-\BOOKMARK [0][-]{chapter.4}{EM Algorithm}{}% 26
-\BOOKMARK [1][-]{section.4.1}{The General EM Algorithm}{chapter.4}% 27
-\BOOKMARK [1][-]{section.4.2}{Update the equilibrium probability density}{chapter.4}% 28
+\BOOKMARK [1][-]{section.2.5}{Posterior probability}{chapter.2}% 19
+\BOOKMARK [0][-]{chapter.3}{Spectral Finite Element Method}{}% 20
+\BOOKMARK [1][-]{section.3.1}{Domain of sFEM}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.2}{Weight function, orthogonality and norm}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.3}{Diagonalization of the operator}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.4}{Photon operator and Emission probability}{chapter.3}% 24
+\BOOKMARK [0][-]{chapter.4}{EM Algorithm}{}% 25
+\BOOKMARK [1][-]{section.4.1}{The General EM Algorithm}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.2}{Update the equilibrium probability density}{chapter.4}% 27

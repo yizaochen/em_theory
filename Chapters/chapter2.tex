@@ -308,6 +308,22 @@ Furthermore, the following is consistent
 \end{equation}
 \end{definition}
 
+\begin{definition}[Likelihood function]
+The likelihood function $p(\textbf{y})$
+\begin{equation}
+        p(\textbf{y}) = p(y_1,\cdots,y_T) = \norm{\alpha_{t_{T}}}^2 = \prod_{i=1}^{T} \norm{\left < \hat{\alpha}_{t_{i-1}} \right| e^{-\textbf{H}\Delta t} \textbf{y}_i}^2 = \prod_{i=1}^{T} c_i^2
+\end{equation}              
+\end{definition}
+
+\begin{definition}[Log likelihood function]
+\begin{equation}
+        l(\theta) = \ln{(p(\textbf{y}))} = \ln{(\prod_{i=1}^{T} c_i^2)} = 2\sum_{i=1}^{T} \ln{c_i}  
+\end{equation}
+\begin{center}
+        \includegraphics[scale=0.45]{ch2/likelihood_example.png}
+\end{center}
+\end{definition}
+
 \section{Backward algorithm}
 \subsection{Probability Meaning}
 First, the $ \left<x|\beta_{t_{\tau}} \right>$ is the probability amplitude of emitting a partial sequence of outputs $(y_{\tau+1},\cdots,y_{T})$ given that the system starts in state $x_{\tau}$. That is,
@@ -440,23 +456,6 @@ the probability meaning is
 \begin{equation}
         p(x_1|\textbf{y}) = (\left<\hat{\alpha}_{t_{1}}|x \right>)^2 \left(\left<x|\hat{\beta}_{t_{1}} \right>\right)^2
 \end{equation} 
-\end{definition}
-
-\section{Likelihood function by forward algorithm}
-\begin{definition}[Likelihood functional]
-\begin{align*}
-        \mathcal{P}(Y(t) ; F(x),D) &= \mathcal{P}(Y(t) ; \theta)= \mathcal{L}[\theta] \\
-	&= \langle \alpha_{t_0} |e^{-\textbf{H}\Delta t_1}\textbf{y}_1e^{-\textbf{H}\Delta t_2}\textbf{y}_2 e^{-\textbf{H}\Delta t_{3}}\textbf{y}_{3} e^{-\textbf{H}\Delta t_{4}}\textbf{y}_{4} | \beta_{t_{4}} \rangle \\
-	&=  \left < \alpha_{t_{4}} | \beta_{t_{4}} \right > = \norm{\alpha_{t_{4}}} \left < \hat{\alpha}_{t_{4}} | \beta_{t_{4}} \right > 
-\end{align*}
-\end{definition}
-
-\begin{definition}[Log-likelihood functional]
-\begin{align*}
-        \ell[\theta] &= \ln \mathcal{L}[\theta] = \ln{\norm{\alpha_{t_{4}}}} + \ln{\left < \hat{\alpha}_{t_{4}} | \beta_{t_{4}} \right >} \\  
-        & =2 \sum_{i=1}^{4} \ln{\frac{\norm{\alpha_{t_{i}}}}{\norm{\alpha_{t_{i-1}}}}} + \ln{\frac{ \left < \alpha_{t_{4}} | \beta_{t_{4}}\right>}{\norm{\alpha_{t_{4}}}}} \\ 
-        & = 2 \sum_{i=1}^{4} \ln{\norm{\left< \hat{\alpha}_{t_{i-1}} \right| e^{-\textbf{H}\Delta t} \textbf{y}_i}} + \ln{\left < \hat{\alpha}_{t_{4}} | \beta_{t_{4}} \right >} 
-\end{align*}
 \end{definition}
 
 \section{Posterior probability}
