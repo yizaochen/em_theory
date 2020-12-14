@@ -2,7 +2,94 @@
 \chapter{EM Algorithm}
 
 \section{The General EM Algorithm}
-Given a joint distribution $p(\textbf{X},\textbf{Y}|\theta)$
+\begin{definition}[The joint probability]
+    \begin{equation}
+        p(\textbf{x}, \textbf{y})= p(x_0)\prod_{t=1}^{T} p(x_{t}|x_{t-1}) p(y_t|x_t)
+    \end{equation}
+    \begin{center}
+        \includegraphics[scale=0.6]{ch2/four_states_ex.png}   
+    \end{center}
+In this example
+    \begin{equation}
+    \begin{split}
+        p(\textbf{x}, \textbf{y})= &[p(x_0) p(x_1|x_0) p(y_1|x_1)] [p(x_2|x_1) p(y_2|x_2)]  [p(x_3|x_2) p(y_3|x_3)] \\
+        &[p(x_4|x_3) p(y_4|x_4)]
+    \end{split}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[The likelihood functional]
+\begin{equation}
+    L[\theta] = p(\textbf{y};\theta) = \int d\textbf{x}p(\textbf{x}, \textbf{y})
+\end{equation}
+\end{definition}
+
+\begin{definition}[The log-likelihood functional]
+\begin{equation}
+    l[\theta] = \ln{(\int d\textbf{x}p(\textbf{x}, \textbf{y}))}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Solve Euler-Lagrange equation]
+Maximization for the optimal parameter set requires taking derivatives of the log-likelihood functional and solves the resulting Euler-Lagrange equation:
+\begin{equation}
+        \frac{\partial l[\theta]}{\partial \theta} = \frac{\partial}{\partial \theta} \ln{(\int d\textbf{x}p(\textbf{x}, \textbf{y}))} = 0
+\end{equation}
+We can further get
+\begin{equation}
+    \frac{\partial l[\theta]}{\partial \theta} =  \frac{\partial \ln{L[\theta]}}{\partial \theta} = \frac{1}{L[\theta]}\frac{\partial L[\theta]}{\partial \theta}
+\end{equation}
+Because we need to do maximization according to previous step($k$), we want to solve the
+following equation
+\begin{equation}
+    0 = \frac{\partial l^k[\theta]}{\partial \theta} = \frac{1}{L^k[\theta]}\frac{\partial L^k[\theta]}{\partial \theta}
+\end{equation}
+And we can express the likelihood functional as
+\begin{equation}
+    L^k[\theta] = p(\textbf{y}) = \sum_{\tau=0}^{T-1} \left<\alpha^k_{t_{\tau}}\right|  e^{-\textbf{H} \Delta t} \left|\beta^k_{t_{\tau+1}}\right>
+\end{equation}
+Therefore, the maximization problem becomes to solve
+\begin{equation}
+    0 =  \frac{\partial l^k[\theta]}{\partial \theta} = \frac{1}{L^k[\theta]} \sum_{\tau=0}^{T-1} \frac{\partial}{\partial \theta} \left<\alpha^k_{t_{\tau}}\right|  e^{-\textbf{H} \Delta t} \left|\beta^k_{t_{\tau+1}}\right>
+\end{equation}
+\end{definition}
+
+\section{The expected log of the complete likelihood}
+\begin{definition}[$\left<\alpha^k_{t_{0}}\right|  e^{-\textbf{H} \Delta t} \left|\beta^k_{t_{1}}\right>$]
+\begin{equation}
+    \left< \alpha_{t_0} | e^{-\textbf{H}\Delta t} | \beta_{t_1} \right> = \int p(x_0) p(x_1|x_0) p(y_2,y_3,y_4|x_1) dx_1= p(x_0,y_2,y_3,y_4)
+\end{equation}
+    \begin{center}
+        \includegraphics[scale=0.25]{ch4/alpha_t0_e_beta_t1.pdf}   
+    \end{center}
+\end{definition}
+
+\begin{definition}[$\left<\alpha^k_{t_{1}}\right|  e^{-\textbf{H} \Delta t} \left|\beta^k_{t_{2}}\right>$]
+\begin{equation}
+    \left< \alpha_{t_1} | e^{-\textbf{H}\Delta t} | \beta_{t_2} \right> = \int p(x_1,y_1) p(x_2|x_1) p(y_3,y_4|x_2) dx_2= p(x_1,y_1,y_3,y_4)
+\end{equation}
+\begin{center}
+    \includegraphics[scale=0.35]{ch4/alpha_t1_e_beta_t2.pdf}   
+\end{center}
+\end{definition}
+
+\begin{definition}[$\left<\alpha^k_{t_{2}}\right|  e^{-\textbf{H} \Delta t} \left|\beta^k_{t_{3}}\right>$]
+\begin{equation}
+    \left< \alpha_{t_2} | e^{-\textbf{H}\Delta t} | \beta_{t_3} \right> = \int p(x_2,y_1,y_2) p(x_3|x_2) p(y_4|x_3) dx_3= p(x_2,y_1,y_2,y_4)
+\end{equation}
+\begin{center}
+    \includegraphics[scale=0.35]{ch4/alpha_t2_e_beta_t3.pdf}   
+\end{center}
+\end{definition}
+
+\begin{definition}[$\left<\alpha^k_{t_{3}}\right|  e^{-\textbf{H} \Delta t} \left|\beta^k_{t_{4}}\right>$]
+\begin{equation}
+    \left< \alpha_{t_3} | e^{-\textbf{H}\Delta t} | \beta_{t_4} \right> = \int p(x_3,y_1,y_2,y_3) p(x_4|x_3) dx_4= p(x_3,y_1,y_2,y_3)
+\end{equation}
+\begin{center}
+    \includegraphics[scale=0.25]{ch4/alpha_t3_e_beta_t4.pdf}   
+\end{center}
+\end{definition}
 
 \section{Update the equilibrium probability density}
 \begin{definition}

@@ -24,4 +24,5 @@
 \BOOKMARK [1][-]{section.3.4}{Photon operator and Emission probability}{chapter.3}% 24
 \BOOKMARK [0][-]{chapter.4}{EM Algorithm}{}% 25
 \BOOKMARK [1][-]{section.4.1}{The General EM Algorithm}{chapter.4}% 26
-\BOOKMARK [1][-]{section.4.2}{Update the equilibrium probability density}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.2}{The expected log of the complete likelihood}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.3}{Update the equilibrium probability density}{chapter.4}% 28

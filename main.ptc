@@ -60,5 +60,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.1}The General EM Algorithm}{29}{section.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Update the equilibrium probability density}{29}{section.4.2}%
+\contentsline {section}{\numberline {4.2}The expected log of the complete likelihood}{30}{section.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}Update the equilibrium probability density}{32}{section.4.3}%
 \contentsfinish 
