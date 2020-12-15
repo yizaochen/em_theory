@@ -19,11 +19,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.4}alpha-t2}{11}{subsection.2.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.5}alpha-t3}{13}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.5}alpha-t3}{12}{subsection.2.2.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.6}alpha-t4}{14}{subsection.2.2.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Scaling Factor}{16}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Scaling Factor}{15}{section.2.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.4}Backward algorithm}{17}{section.2.4}%
 \defcounter {refsection}{0}\relax 
@@ -31,7 +31,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4.2}beta-4}{17}{subsection.2.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4.3}beta-3}{18}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.3}beta-3}{17}{subsection.2.4.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4.4}beta-2}{19}{subsection.2.4.4}%
 \defcounter {refsection}{0}\relax 
@@ -56,4 +56,6 @@
 \contentsline {section}{\numberline {4.2}The expected log of the complete likelihood}{30}{section.4.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.3}Update the equilibrium probability density}{32}{section.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}EM Test}{33}{section.4.4}%
 \contentsfinish 

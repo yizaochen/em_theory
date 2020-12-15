@@ -503,9 +503,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/zptmcm7t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
-INPUT /home/ytcdata/em_theory/Pictures/ch2/alphat1_expdt_extremecase.png
-INPUT /home/ytcdata/em_theory/Pictures/ch2/alphat1_expdt_extremecase.png
-INPUT /home/ytcdata/em_theory/Pictures/ch2/alphat1_expdt_extremecase.png
 INPUT /home/ytcdata/em_theory/Pictures/ch2/alphat1_expdt_normalcase.png
 INPUT /home/ytcdata/em_theory/Pictures/ch2/alphat1_expdt_normalcase.png
 INPUT /home/ytcdata/em_theory/Pictures/ch2/alphat1_expdt_normalcase.png
@@ -542,12 +539,12 @@ INPUT /home/ytcdata/em_theory/Pictures/ch2/posterior_4.png
 INPUT /home/ytcdata/em_theory/Pictures/ch2/norm_example.pdf
 INPUT /home/ytcdata/em_theory/Pictures/ch2/norm_example.pdf
 INPUT /home/ytcdata/em_theory/Pictures/ch2/norm_example.pdf
+INPUT /home/ytcdata/em_theory/Pictures/ch2/likelihood_example.png
+INPUT /home/ytcdata/em_theory/Pictures/ch2/likelihood_example.png
+INPUT /home/ytcdata/em_theory/Pictures/ch2/likelihood_example.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/zptmcm7y.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
-INPUT /home/ytcdata/em_theory/Pictures/ch2/likelihood_example.png
-INPUT /home/ytcdata/em_theory/Pictures/ch2/likelihood_example.png
-INPUT /home/ytcdata/em_theory/Pictures/ch2/likelihood_example.png
 INPUT /home/ytcdata/em_theory/Pictures/ch2/beta_example.pdf
 INPUT /home/ytcdata/em_theory/Pictures/ch2/beta_example.pdf
 INPUT /home/ytcdata/em_theory/Pictures/ch2/beta_example.pdf
@@ -632,6 +629,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /home/ytcdata/em_theory/Pictures/ch4/ex1_grids.pdf
 INPUT /home/ytcdata/em_theory/Pictures/ch4/ex1_grids.pdf
 INPUT /home/ytcdata/em_theory/Pictures/ch4/ex1_grids.pdf
+INPUT /home/ytcdata/em_theory/Pictures/ch4/forward_backward_v2.png
+INPUT /home/ytcdata/em_theory/Pictures/ch4/forward_backward_v2.png
+INPUT /home/ytcdata/em_theory/Pictures/ch4/forward_backward_v2.png
 OUTPUT /home/ytcdata/em_theory/main.ptc
 INPUT /home/ytcdata/em_theory/main.aux
 INPUT /home/ytcdata/em_theory/main.out

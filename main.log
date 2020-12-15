@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.4)  14 DEC 2020 21:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.4)  15 DEC 2020 21:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1074,7 +1074,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <35> not available
 (Font)              Font shape `T1/pag/db/n' tried instead on input line 58.
-<Pictures/esahubble.png, id=119, 614.295pt x 794.97pt>
+<Pictures/esahubble.png, id=123, 614.295pt x 794.97pt>
 File: Pictures/esahubble.png Graphic file (type png)
 <use Pictures/esahubble.png>
 Package pdftex.def Info: Pictures/esahubble.png  used on input line 68.
@@ -1097,7 +1097,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 78--79
  []
 
 [2]
-<Pictures/head1.png, id=133, 1027.6794pt x 514.0806pt>
+<Pictures/head1.png, id=137, 1027.6794pt x 514.0806pt>
 File: Pictures/head1.png Graphic file (type png)
 <use Pictures/head1.png>
 Package pdftex.def Info: Pictures/head1.png  used on input line 90.
@@ -1120,7 +1120,7 @@ LaTeX Font Info:    Font shape `T1/pag/b/n' in size <10.95> not available
  (/home/ytcdata/em_theory/Chapters/chapter1.tex [4]
 Chapter 1.
 \c@ttl@toc@default=\count452
-<Pictures/head2.png, id=199, 1027.6794pt x 514.0806pt>
+<Pictures/head2.png, id=206, 1027.6794pt x 514.0806pt>
 File: Pictures/head2.png Graphic file (type png)
 <use Pictures/head2.png>
 Package pdftex.def Info: Pictures/head2.png  used on input line 2.
@@ -1183,12 +1183,12 @@ Package mdframed Info: mdframed works in twoside mode on input line 11.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 11.
-<Pictures/ch2/four_states_ex.png, id=214, 469.755pt x 151.767pt>
+<Pictures/ch2/four_states_ex.png, id=220, 469.755pt x 151.767pt>
 File: Pictures/ch2/four_states_ex.png Graphic file (type png)
 <use Pictures/ch2/four_states_ex.png>
 Package pdftex.def Info: Pictures/ch2/four_states_ex.png  used on input line 17.
 (pdftex.def)             Requested size: 375.80452pt x 121.41374pt.
-<Pictures/ch2/alpha_example.pdf, id=216, 469.755pt x 151.767pt>
+<Pictures/ch2/alpha_example.pdf, id=222, 469.755pt x 151.767pt>
 File: Pictures/ch2/alpha_example.pdf Graphic file (type pdf)
 <use Pictures/ch2/alpha_example.pdf>
 Package pdftex.def Info: Pictures/ch2/alpha_example.pdf  used on input line 28.
@@ -1202,7 +1202,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
-<Pictures/ch2/alpha_t0.png, id=231, 867.24pt x 578.16pt>
+<Pictures/ch2/alpha_t0.png, id=237, 867.24pt x 578.16pt>
 File: Pictures/ch2/alpha_t0.png Graphic file (type png)
 <use Pictures/ch2/alpha_t0.png>
 Package pdftex.def Info: Pictures/ch2/alpha_t0.png  used on input line 37.
@@ -1216,7 +1216,7 @@ LaTeX Font Info:    Font shape `T1/pag/b/n' in size <7.4> not available
 (Font)              Font shape `T1/pag/db/n' tried instead on input line 64.
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <6> not available
 (Font)              Font shape `T1/pag/db/n' tried instead on input line 64.
-<Pictures/ch2/alpha_t0_exp_dt.png, id=242, 867.24pt x 289.08pt>
+<Pictures/ch2/alpha_t0_exp_dt.png, id=248, 867.24pt x 289.08pt>
 File: Pictures/ch2/alpha_t0_exp_dt.png Graphic file (type png)
 <use Pictures/ch2/alpha_t0_exp_dt.png>
 Package pdftex.def Info: Pictures/ch2/alpha_t0_exp_dt.png  used on input line 72.
@@ -1225,12 +1225,12 @@ Package mdframed Info: mdframed works in twoside mode on input line 77.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 77.
-<Pictures/ch2/photon_operator_y1.png, id=243, 867.24pt x 433.62pt>
+<Pictures/ch2/photon_operator_y1.png, id=249, 867.24pt x 433.62pt>
 File: Pictures/ch2/photon_operator_y1.png Graphic file (type png)
 <use Pictures/ch2/photon_operator_y1.png>
 Package pdftex.def Info: Pictures/ch2/photon_operator_y1.png  used on input line 82.
 (pdftex.def)             Requested size: 216.80946pt x 108.40472pt.
-<Pictures/ch2/alpha_1.png, id=244, 867.24pt x 433.62pt>
+<Pictures/ch2/alpha_1.png, id=250, 867.24pt x 433.62pt>
 File: Pictures/ch2/alpha_1.png Graphic file (type png)
 <use Pictures/ch2/alpha_1.png>
 Package pdftex.def Info: Pictures/ch2/alpha_1.png  used on input line 93.
@@ -1240,230 +1240,237 @@ Package mdframed Info: mdframed works in twoside mode on input line 106.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 106.
-<Pictures/ch2/alphat1_expdt_extremecase.png, id=258, 867.24pt x 433.62pt>
-File: Pictures/ch2/alphat1_expdt_extremecase.png Graphic file (type png)
-<use Pictures/ch2/alphat1_expdt_extremecase.png>
-Package pdftex.def Info: Pictures/ch2/alphat1_expdt_extremecase.png  used on input line 139.
-(pdftex.def)             Requested size: 346.88986pt x 173.44492pt.
-<Pictures/ch2/alphat1_expdt_normalcase.png, id=259, 867.24pt x 433.62pt>
+<Pictures/ch2/alphat1_expdt_normalcase.png, id=264, 867.24pt x 433.62pt>
 File: Pictures/ch2/alphat1_expdt_normalcase.png Graphic file (type png)
 <use Pictures/ch2/alphat1_expdt_normalcase.png>
-Package pdftex.def Info: Pictures/ch2/alphat1_expdt_normalcase.png  used on input line 143.
+Package pdftex.def Info: Pictures/ch2/alphat1_expdt_normalcase.png  used on input line 136.
+(pdftex.def)             Requested size: 346.88986pt x 173.44492pt.
+ [10 </home/ytcdata/em_theory/Pictures/ch2/alpha_1.png>]
+Package mdframed Info: mdframed works in twoside mode on input line 145.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 145.
+<Pictures/ch2/photon_operator_y2.png, id=273, 867.24pt x 433.62pt>
+File: Pictures/ch2/photon_operator_y2.png Graphic file (type png)
+<use Pictures/ch2/photon_operator_y2.png>
+Package pdftex.def Info: Pictures/ch2/photon_operator_y2.png  used on input line 150.
+(pdftex.def)             Requested size: 216.80946pt x 108.40472pt.
+<Pictures/ch2/alpha_2.png, id=274, 867.24pt x 433.62pt>
+File: Pictures/ch2/alpha_2.png Graphic file (type png)
+<use Pictures/ch2/alpha_2.png>
+Package pdftex.def Info: Pictures/ch2/alpha_2.png  used on input line 174.
 (pdftex.def)             Requested size: 346.88986pt x 173.44492pt.
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 145.
- [10 </home/ytcdata/em_theory/Pictures/ch2/alpha_1.png>]
-Package mdframed Info: mdframed works in twoside mode on input line 148.
+(mdframed)              on input line 176.
+ [11 </home/ytcdata/em_theory/Pictures/ch2/alphat1_expdt_normalcase.png> </home/ytcdata/em_theory/Pictures/ch2/photon_operator_y2.png>]
+Package mdframed Info: mdframed works in twoside mode on input line 178.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 148.
-<Pictures/ch2/photon_operator_y2.png, id=268, 867.24pt x 433.62pt>
-File: Pictures/ch2/photon_operator_y2.png Graphic file (type png)
-<use Pictures/ch2/photon_operator_y2.png>
-Package pdftex.def Info: Pictures/ch2/photon_operator_y2.png  used on input line 153.
-(pdftex.def)             Requested size: 216.80946pt x 108.40472pt.
-<Pictures/ch2/alpha_2.png, id=269, 867.24pt x 433.62pt>
-File: Pictures/ch2/alpha_2.png Graphic file (type png)
-<use Pictures/ch2/alpha_2.png>
-Package pdftex.def Info: Pictures/ch2/alpha_2.png  used on input line 177.
-(pdftex.def)             Requested size: 346.88986pt x 173.44492pt.
- [11 </home/ytcdata/em_theory/Pictures/ch2/alphat1_expdt_extremecase.png> </home/ytcdata/em_theory/Pictures/ch2/alphat1_expdt_normalcase.png>]
-Package mdframed Info: mdframed works in twoside mode on input line 181.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 181.
-<Pictures/ch2/alphat2_expdt.png, id=276, 867.24pt x 433.62pt>
+(mdframed)              on input line 178.
+<Pictures/ch2/alphat2_expdt.png, id=285, 867.24pt x 433.62pt>
 File: Pictures/ch2/alphat2_expdt.png Graphic file (type png)
 <use Pictures/ch2/alphat2_expdt.png>
-Package pdftex.def Info: Pictures/ch2/alphat2_expdt.png  used on input line 187.
+Package pdftex.def Info: Pictures/ch2/alphat2_expdt.png  used on input line 184.
 (pdftex.def)             Requested size: 346.88986pt x 173.44492pt.
-Package mdframed Info: You first box width is to small
- mdframed fixed it
-(mdframed)              on input line 189.
- [12 </home/ytcdata/em_theory/Pictures/ch2/photon_operator_y2.png> </home/ytcdata/em_theory/Pictures/ch2/alpha_2.png>]
-Package mdframed Info: mdframed works in twoside mode on input line 192.
+Package mdframed Info: mdframed works in twoside mode on input line 189.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 192.
-<Pictures/ch2/photon_operator_y3.png, id=288, 867.24pt x 433.62pt>
+(mdframed)              on input line 189.
+<Pictures/ch2/photon_operator_y3.png, id=286, 867.24pt x 433.62pt>
 File: Pictures/ch2/photon_operator_y3.png Graphic file (type png)
 <use Pictures/ch2/photon_operator_y3.png>
-Package pdftex.def Info: Pictures/ch2/photon_operator_y3.png  used on input line 197.
+Package pdftex.def Info: Pictures/ch2/photon_operator_y3.png  used on input line 194.
 (pdftex.def)             Requested size: 216.80946pt x 108.40472pt.
-<Pictures/ch2/alpha_3.png, id=289, 867.24pt x 433.62pt>
+<Pictures/ch2/alpha_3.png, id=287, 867.24pt x 433.62pt>
 File: Pictures/ch2/alpha_3.png Graphic file (type png)
 <use Pictures/ch2/alpha_3.png>
-Package pdftex.def Info: Pictures/ch2/alpha_3.png  used on input line 211.
+Package pdftex.def Info: Pictures/ch2/alpha_3.png  used on input line 208.
 (pdftex.def)             Requested size: 346.88986pt x 173.44492pt.
- [13 </home/ytcdata/em_theory/Pictures/ch2/alphat2_expdt.png> </home/ytcdata/em_theory/Pictures/ch2/photon_operator_y3.png>]
-Package mdframed Info: mdframed works in twoside mode on input line 215.
+ [12 </home/ytcdata/em_theory/Pictures/ch2/alpha_2.png> </home/ytcdata/em_theory/Pictures/ch2/alphat2_expdt.png>]
+Package mdframed Info: mdframed works in twoside mode on input line 212.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 215.
-<Pictures/ch2/alphat3_expdt.png, id=302, 867.24pt x 433.62pt>
+(mdframed)              on input line 212.
+<Pictures/ch2/alphat3_expdt.png, id=298, 867.24pt x 433.62pt>
 File: Pictures/ch2/alphat3_expdt.png Graphic file (type png)
 <use Pictures/ch2/alphat3_expdt.png>
-Package pdftex.def Info: Pictures/ch2/alphat3_expdt.png  used on input line 221.
+Package pdftex.def Info: Pictures/ch2/alphat3_expdt.png  used on input line 218.
 (pdftex.def)             Requested size: 346.88986pt x 173.44492pt.
-Package mdframed Info: mdframed works in twoside mode on input line 226.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13 </home/ytcdata/em_theory/Pictures/ch2/photon_operator_y3.png> </home/ytcdata/em_theory/Pictures/ch2/alpha_3.png> </home/ytcdata/em_theory/Pictures/ch2/alphat3_expdt.png>]
+Package mdframed Info: mdframed works in twoside mode on input line 223.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 226.
-<Pictures/ch2/photon_operator_y4.png, id=303, 867.24pt x 433.62pt>
+(mdframed)              on input line 223.
+<Pictures/ch2/photon_operator_y4.png, id=310, 867.24pt x 433.62pt>
 File: Pictures/ch2/photon_operator_y4.png Graphic file (type png)
 <use Pictures/ch2/photon_operator_y4.png>
-Package pdftex.def Info: Pictures/ch2/photon_operator_y4.png  used on input line 231.
+Package pdftex.def Info: Pictures/ch2/photon_operator_y4.png  used on input line 228.
 (pdftex.def)             Requested size: 216.80946pt x 108.40472pt.
-<Pictures/ch2/alpha_4.png, id=304, 867.24pt x 433.62pt>
+<Pictures/ch2/alpha_4.png, id=311, 867.24pt x 433.62pt>
 File: Pictures/ch2/alpha_4.png Graphic file (type png)
 <use Pictures/ch2/alpha_4.png>
-Package pdftex.def Info: Pictures/ch2/alpha_4.png  used on input line 248.
+Package pdftex.def Info: Pictures/ch2/alpha_4.png  used on input line 245.
 (pdftex.def)             Requested size: 346.88986pt x 173.44492pt.
- [14 </home/ytcdata/em_theory/Pictures/ch2/alpha_3.png> </home/ytcdata/em_theory/Pictures/ch2/alphat3_expdt.png> </home/ytcdata/em_theory/Pictures/ch2/photon_operator_y4.png>]
-Package mdframed Info: mdframed works in twoside mode on input line 252.
+Package mdframed Info: mdframed works in twoside mode on input line 249.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 252.
-<Pictures/ch2/alpha_hat_4_graphical.pdf, id=315, 469.755pt x 151.767pt>
+(mdframed)              on input line 249.
+<Pictures/ch2/alpha_hat_4_graphical.pdf, id=312, 469.755pt x 151.767pt>
 File: Pictures/ch2/alpha_hat_4_graphical.pdf Graphic file (type pdf)
 <use Pictures/ch2/alpha_hat_4_graphical.pdf>
-Package pdftex.def Info: Pictures/ch2/alpha_hat_4_graphical.pdf  used on input line 257.
+Package pdftex.def Info: Pictures/ch2/alpha_hat_4_graphical.pdf  used on input line 254.
 (pdftex.def)             Requested size: 328.82626pt x 106.23616pt.
-<Pictures/ch2/posterior_4.png, id=316, 289.08pt x 289.08pt>
+<Pictures/ch2/posterior_4.png, id=313, 289.08pt x 289.08pt>
 File: Pictures/ch2/posterior_4.png Graphic file (type png)
 <use Pictures/ch2/posterior_4.png>
-Package pdftex.def Info: Pictures/ch2/posterior_4.png  used on input line 260.
+Package pdftex.def Info: Pictures/ch2/posterior_4.png  used on input line 257.
 (pdftex.def)             Requested size: 144.53964pt x 144.53964pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15 </home/ytcdata/em_theory/Pictures/ch2/alpha_4.png> </home/ytcdata/em_theory/Pictures/ch2/alpha_hat_4_graphical.pdf> </home/ytcdata/em_theory/Pictures/ch2/posterior_4.png>]
-Package mdframed Info: mdframed works in twoside mode on input line 265.
+ [14 </home/ytcdata/em_theory/Pictures/ch2/photon_operator_y4.png> </home/ytcdata/em_theory/Pictures/ch2/alpha_4.png>]
+Package mdframed Info: mdframed works in twoside mode on input line 262.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 265.
-<Pictures/ch2/norm_example.pdf, id=328, 469.755pt x 151.767pt>
+(mdframed)              on input line 262.
+<Pictures/ch2/norm_example.pdf, id=326, 469.755pt x 151.767pt>
 File: Pictures/ch2/norm_example.pdf Graphic file (type pdf)
 <use Pictures/ch2/norm_example.pdf>
-Package pdftex.def Info: Pictures/ch2/norm_example.pdf  used on input line 276.
+Package pdftex.def Info: Pictures/ch2/norm_example.pdf  used on input line 273.
 (pdftex.def)             Requested size: 281.85518pt x 91.06088pt.
-Package mdframed Info: mdframed works in twoside mode on input line 284.
+Package mdframed Info: mdframed works in twoside mode on input line 281.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 284.
-Package mdframed Info: mdframed works in twoside mode on input line 311.
+(mdframed)              on input line 281.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 306.
+Package mdframed Info: You first box width is to small
+ mdframed fixed it
+(mdframed)              on input line 306.
+ [15 </home/ytcdata/em_theory/Pictures/ch2/alpha_hat_4_graphical.pdf> </home/ytcdata/em_theory/Pictures/ch2/posterior_4.png> </home/ytcdata/em_theory/Pictures/ch2/norm_example.pdf
+
+pdfTeX warning: pdflatex (file /home/ytcdata/em_theory/Pictures/ch2/norm_example.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>]
+Package mdframed Info: mdframed works in twoside mode on input line 308.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 311.
+(mdframed)              on input line 308.
+Package mdframed Info: mdframed works in twoside mode on input line 315.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 315.
+<Pictures/ch2/likelihood_example.png, id=340, 578.16pt x 289.08pt>
+File: Pictures/ch2/likelihood_example.png Graphic file (type png)
+<use Pictures/ch2/likelihood_example.png>
+Package pdftex.def Info: Pictures/ch2/likelihood_example.png  used on input line 320.
+(pdftex.def)             Requested size: 260.16959pt x 130.0848pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16 </home/ytcdata/em_theory/Pictures/ch2/norm_example.pdf>]
-Package mdframed Info: Not enough space on this page on input line 316.
-Package mdframed Info: mdframed works in twoside mode on input line 318.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 318.
-<Pictures/ch2/likelihood_example.png, id=347, 578.16pt x 289.08pt>
-File: Pictures/ch2/likelihood_example.png Graphic file (type png)
-<use Pictures/ch2/likelihood_example.png>
-Package pdftex.def Info: Pictures/ch2/likelihood_example.png  used on input line 323.
-(pdftex.def)             Requested size: 260.16959pt x 130.0848pt.
-<Pictures/ch2/beta_example.pdf, id=348, 469.755pt x 151.767pt>
+ [16 </home/ytcdata/em_theory/Pictures/ch2/likelihood_example.png>]
+<Pictures/ch2/beta_example.pdf, id=357, 469.755pt x 151.767pt>
 File: Pictures/ch2/beta_example.pdf Graphic file (type pdf)
 <use Pictures/ch2/beta_example.pdf>
-Package pdftex.def Info: Pictures/ch2/beta_example.pdf  used on input line 335.
+Package pdftex.def Info: Pictures/ch2/beta_example.pdf  used on input line 332.
 (pdftex.def)             Requested size: 281.85518pt x 91.06088pt.
-Package mdframed Info: mdframed works in twoside mode on input line 339.
+Package mdframed Info: mdframed works in twoside mode on input line 336.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 339.
-<Pictures/ch2/beta_4.png, id=352, 578.16pt x 289.08pt>
+(mdframed)              on input line 336.
+<Pictures/ch2/beta_4.png, id=361, 578.16pt x 289.08pt>
 File: Pictures/ch2/beta_4.png Graphic file (type png)
 <use Pictures/ch2/beta_4.png>
-Package pdftex.def Info: Pictures/ch2/beta_4.png  used on input line 358.
+Package pdftex.def Info: Pictures/ch2/beta_4.png  used on input line 355.
 (pdftex.def)             Requested size: 260.16959pt x 130.0848pt.
- [17 </home/ytcdata/em_theory/Pictures/ch2/likelihood_example.png> </home/ytcdata/em_theory/Pictures/ch2/beta_example.pdf>]
-Package mdframed Info: mdframed works in twoside mode on input line 363.
+Package mdframed Info: mdframed works in twoside mode on input line 360.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 363.
-<Pictures/ch2/beta_3_graphical.pdf, id=367, 469.755pt x 151.767pt>
+(mdframed)              on input line 360.
+<Pictures/ch2/beta_3_graphical.pdf, id=362, 469.755pt x 151.767pt>
 File: Pictures/ch2/beta_3_graphical.pdf Graphic file (type pdf)
 <use Pictures/ch2/beta_3_graphical.pdf>
-Package pdftex.def Info: Pictures/ch2/beta_3_graphical.pdf  used on input line 372.
+Package pdftex.def Info: Pictures/ch2/beta_3_graphical.pdf  used on input line 369.
 (pdftex.def)             Requested size: 281.85518pt x 91.06088pt.
-<Pictures/ch2/beta_3.png, id=368, 867.24pt x 289.08pt>
+<Pictures/ch2/beta_3.png, id=363, 867.24pt x 289.08pt>
 File: Pictures/ch2/beta_3.png Graphic file (type png)
 <use Pictures/ch2/beta_3.png>
-Package pdftex.def Info: Pictures/ch2/beta_3.png  used on input line 375.
+Package pdftex.def Info: Pictures/ch2/beta_3.png  used on input line 372.
 (pdftex.def)             Requested size: 390.2544pt x 130.0848pt.
- [18 </home/ytcdata/em_theory/Pictures/ch2/beta_4.png> </home/ytcdata/em_theory/Pictures/ch2/beta_3_graphical.pdf>]
-Package mdframed Info: mdframed works in twoside mode on input line 379.
+ [17 </home/ytcdata/em_theory/Pictures/ch2/beta_example.pdf> </home/ytcdata/em_theory/Pictures/ch2/beta_4.png>]
+Package mdframed Info: Not enough space on this page on input line 374.
+Package mdframed Info: mdframed works in twoside mode on input line 376.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 379.
-<Pictures/ch2/beta_3_hat.png, id=381, 867.24pt x 289.08pt>
+(mdframed)              on input line 376.
+<Pictures/ch2/beta_3_hat.png, id=378, 867.24pt x 289.08pt>
 File: Pictures/ch2/beta_3_hat.png Graphic file (type png)
 <use Pictures/ch2/beta_3_hat.png>
-Package pdftex.def Info: Pictures/ch2/beta_3_hat.png  used on input line 390.
+Package pdftex.def Info: Pictures/ch2/beta_3_hat.png  used on input line 387.
 (pdftex.def)             Requested size: 390.2544pt x 130.0848pt.
-Package mdframed Info: mdframed works in twoside mode on input line 398.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 392.
+ [18 </home/ytcdata/em_theory/Pictures/ch2/beta_3_graphical.pdf> </home/ytcdata/em_theory/Pictures/ch2/beta_3.png>]
+Package mdframed Info: mdframed works in twoside mode on input line 395.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 398.
-<Pictures/ch2/beta_2_graphical.pdf, id=382, 469.755pt x 151.767pt>
+(mdframed)              on input line 395.
+<Pictures/ch2/beta_2_graphical.pdf, id=392, 469.755pt x 151.767pt>
 File: Pictures/ch2/beta_2_graphical.pdf Graphic file (type pdf)
 <use Pictures/ch2/beta_2_graphical.pdf>
-Package pdftex.def Info: Pictures/ch2/beta_2_graphical.pdf  used on input line 407.
+Package pdftex.def Info: Pictures/ch2/beta_2_graphical.pdf  used on input line 404.
 (pdftex.def)             Requested size: 281.85518pt x 91.06088pt.
- [19 </home/ytcdata/em_theory/Pictures/ch2/beta_3.png> </home/ytcdata/em_theory/Pictures/ch2/beta_3_hat.png>]
-Package mdframed Info: mdframed works in twoside mode on input line 411.
+Package mdframed Info: mdframed works in twoside mode on input line 408.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 411.
-<Pictures/ch2/beta_2_hat.png, id=398, 867.24pt x 289.08pt>
+(mdframed)              on input line 408.
+<Pictures/ch2/beta_2_hat.png, id=394, 867.24pt x 289.08pt>
 File: Pictures/ch2/beta_2_hat.png Graphic file (type png)
 <use Pictures/ch2/beta_2_hat.png>
-Package pdftex.def Info: Pictures/ch2/beta_2_hat.png  used on input line 422.
+Package pdftex.def Info: Pictures/ch2/beta_2_hat.png  used on input line 419.
 (pdftex.def)             Requested size: 390.2544pt x 130.0848pt.
-Package mdframed Info: mdframed works in twoside mode on input line 430.
+ [19 </home/ytcdata/em_theory/Pictures/ch2/beta_3_hat.png> </home/ytcdata/em_theory/Pictures/ch2/beta_2_graphical.pdf>]
+Package mdframed Info: mdframed works in twoside mode on input line 427.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 430.
-<Pictures/ch2/beta_1_graphical.pdf, id=399, 469.755pt x 151.767pt>
+(mdframed)              on input line 427.
+<Pictures/ch2/beta_1_graphical.pdf, id=409, 469.755pt x 151.767pt>
 File: Pictures/ch2/beta_1_graphical.pdf Graphic file (type pdf)
 <use Pictures/ch2/beta_1_graphical.pdf>
-Package pdftex.def Info: Pictures/ch2/beta_1_graphical.pdf  used on input line 439.
+Package pdftex.def Info: Pictures/ch2/beta_1_graphical.pdf  used on input line 436.
 (pdftex.def)             Requested size: 281.85518pt x 91.06088pt.
- [20 </home/ytcdata/em_theory/Pictures/ch2/beta_2_graphical.pdf> </home/ytcdata/em_theory/Pictures/ch2/beta_2_hat.png>]
-Package mdframed Info: mdframed works in twoside mode on input line 443.
+Package mdframed Info: mdframed works in twoside mode on input line 440.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 443.
-<Pictures/ch2/beta_1_hat.png, id=415, 867.24pt x 289.08pt>
+(mdframed)              on input line 440.
+<Pictures/ch2/beta_1_hat.png, id=411, 867.24pt x 289.08pt>
 File: Pictures/ch2/beta_1_hat.png Graphic file (type png)
 <use Pictures/ch2/beta_1_hat.png>
-Package pdftex.def Info: Pictures/ch2/beta_1_hat.png  used on input line 454.
+Package pdftex.def Info: Pictures/ch2/beta_1_hat.png  used on input line 451.
 (pdftex.def)             Requested size: 390.2544pt x 130.0848pt.
-Package mdframed Info: mdframed works in twoside mode on input line 462.
+ [20 </home/ytcdata/em_theory/Pictures/ch2/beta_2_hat.png> </home/ytcdata/em_theory/Pictures/ch2/beta_1_graphical.pdf>]
+Package mdframed Info: mdframed works in twoside mode on input line 459.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 462.
- [21 </home/ytcdata/em_theory/Pictures/ch2/beta_1_graphical.pdf> </home/ytcdata/em_theory/Pictures/ch2/beta_1_hat.png>]
-Package mdframed Info: mdframed works in twoside mode on input line 484.
+(mdframed)              on input line 459.
+Package mdframed Info: mdframed works in twoside mode on input line 481.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 484.
-Package mdframed Info: mdframed works in twoside mode on input line 504.
+(mdframed)              on input line 481.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 499.
+ [21 </home/ytcdata/em_theory/Pictures/ch2/beta_1_hat.png>]
+Package mdframed Info: mdframed works in twoside mode on input line 501.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 504.
-<Pictures/ch2/posterior_3.pdf, id=431, 469.755pt x 151.767pt>
+(mdframed)              on input line 501.
+<Pictures/ch2/posterior_3.pdf, id=439, 469.755pt x 151.767pt>
 File: Pictures/ch2/posterior_3.pdf Graphic file (type pdf)
 <use Pictures/ch2/posterior_3.pdf>
-Package pdftex.def Info: Pictures/ch2/posterior_3.pdf  used on input line 523.
+Package pdftex.def Info: Pictures/ch2/posterior_3.pdf  used on input line 520.
 (pdftex.def)             Requested size: 281.85518pt x 91.06088pt.
 ) (/home/ytcdata/em_theory/Chapters/chapter3.tex [22 </home/ytcdata/em_theory/Pictures/ch2/posterior_3.pdf>]
 Chapter 3.
@@ -1471,7 +1478,7 @@ File: Pictures/head2.png Graphic file (type png)
 <use Pictures/head2.png>
 Package pdftex.def Info: Pictures/head2.png  used on input line 2.
 (pdftex.def)             Requested size: 614.295pt x 307.30548pt.
-<Pictures/ch3/node.pdf, id=447, 1156.32pt x 72.27pt>
+<Pictures/ch3/node.pdf, id=451, 1156.32pt x 72.27pt>
 File: Pictures/ch3/node.pdf Graphic file (type pdf)
 <use Pictures/ch3/node.pdf>
 Package pdftex.def Info: Pictures/ch3/node.pdf  used on input line 6.
@@ -1499,7 +1506,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 50.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 50.
-<Pictures/ch3/weight_function.png, id=466, 1156.32pt x 289.08pt>
+<Pictures/ch3/weight_function.png, id=470, 1156.32pt x 289.08pt>
 File: Pictures/ch3/weight_function.png Graphic file (type png)
 <use Pictures/ch3/weight_function.png>
 Package pdftex.def Info: Pictures/ch3/weight_function.png  used on input line 53.
@@ -1520,7 +1527,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 80.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 80.
-<Pictures/ch3/eigenvec_matrix_complete.png, id=467, 867.24pt x 433.62pt>
+<Pictures/ch3/eigenvec_matrix_complete.png, id=471, 867.24pt x 433.62pt>
 File: Pictures/ch3/eigenvec_matrix_complete.png Graphic file (type png)
 <use Pictures/ch3/eigenvec_matrix_complete.png>
 Package pdftex.def Info: Pictures/ch3/eigenvec_matrix_complete.png  used on input line 99.
@@ -1538,7 +1545,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 117.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 117.
-<Pictures/ch3/linear_transform.pdf, id=495, 471.5845pt x 266.1727pt>
+<Pictures/ch3/linear_transform.pdf, id=499, 471.5845pt x 266.1727pt>
 File: Pictures/ch3/linear_transform.pdf Graphic file (type pdf)
 <use Pictures/ch3/linear_transform.pdf>
 Package pdftex.def Info: Pictures/ch3/linear_transform.pdf  used on input line 134.
@@ -1547,7 +1554,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 138.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 138.
-<Pictures/ch3/transform_map.pdf, id=496, 471.5845pt x 148.29008pt>
+<Pictures/ch3/transform_map.pdf, id=500, 471.5845pt x 148.29008pt>
 File: Pictures/ch3/transform_map.pdf Graphic file (type pdf)
 <use Pictures/ch3/transform_map.pdf>
 Package pdftex.def Info: Pictures/ch3/transform_map.pdf  used on input line 167.
@@ -1592,7 +1599,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 58.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 58.
-<Pictures/ch4/alpha_t0_e_beta_t1.pdf, id=528, 469.755pt x 607.068pt>
+<Pictures/ch4/alpha_t0_e_beta_t1.pdf, id=532, 469.755pt x 607.068pt>
 File: Pictures/ch4/alpha_t0_e_beta_t1.pdf Graphic file (type pdf)
 <use Pictures/ch4/alpha_t0_e_beta_t1.pdf>
 Package pdftex.def Info: Pictures/ch4/alpha_t0_e_beta_t1.pdf  used on input line 63.
@@ -1601,7 +1608,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 67.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 67.
-<Pictures/ch4/alpha_t1_e_beta_t2.pdf, id=529, 469.755pt x 607.068pt>
+<Pictures/ch4/alpha_t1_e_beta_t2.pdf, id=533, 469.755pt x 607.068pt>
 File: Pictures/ch4/alpha_t1_e_beta_t2.pdf Graphic file (type pdf)
 <use Pictures/ch4/alpha_t1_e_beta_t2.pdf>
 Package pdftex.def Info: Pictures/ch4/alpha_t1_e_beta_t2.pdf  used on input line 72.
@@ -1615,7 +1622,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 76.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 76.
-<Pictures/ch4/alpha_t2_e_beta_t3.pdf, id=544, 469.755pt x 607.068pt>
+<Pictures/ch4/alpha_t2_e_beta_t3.pdf, id=548, 469.755pt x 607.068pt>
 File: Pictures/ch4/alpha_t2_e_beta_t3.pdf Graphic file (type pdf)
 <use Pictures/ch4/alpha_t2_e_beta_t3.pdf>
 Package pdftex.def Info: Pictures/ch4/alpha_t2_e_beta_t3.pdf  used on input line 81.
@@ -1624,7 +1631,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 85.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 85.
-<Pictures/ch4/alpha_t3_e_beta_t4.pdf, id=545, 469.755pt x 607.068pt>
+<Pictures/ch4/alpha_t3_e_beta_t4.pdf, id=549, 469.755pt x 607.068pt>
 File: Pictures/ch4/alpha_t3_e_beta_t4.pdf Graphic file (type pdf)
 <use Pictures/ch4/alpha_t3_e_beta_t4.pdf>
 Package pdftex.def Info: Pictures/ch4/alpha_t3_e_beta_t4.pdf  used on input line 90.
@@ -1649,7 +1656,7 @@ Package mdframed Info: mdframed detected package amsthm
 (mdframed)              on input line 104.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 110.
-<Pictures/ch4/ex1_grids.pdf, id=559, 126.0457pt x 17.60088pt>
+<Pictures/ch4/ex1_grids.pdf, id=563, 126.0457pt x 17.60088pt>
 File: Pictures/ch4/ex1_grids.pdf Graphic file (type pdf)
 <use Pictures/ch4/ex1_grids.pdf>
 Package pdftex.def Info: Pictures/ch4/ex1_grids.pdf  used on input line 116.
@@ -1665,35 +1672,41 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [32 </home/ytcdata/em_theory/Pictures/ch4/alpha_t3_e_beta_t4.pdf> </home/ytcdata/em_theory/Pictures/ch4/ex1_grids.pdf
 
 pdfTeX warning: pdflatex (file /home/ytcdata/em_theory/Pictures/ch4/ex1_grids.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->])
+>]
+<Pictures/ch4/forward_backward_v2.png, id=582, 1156.32pt x 578.16pt>
+File: Pictures/ch4/forward_backward_v2.png Graphic file (type png)
+<use Pictures/ch4/forward_backward_v2.png>
+Package pdftex.def Info: Pictures/ch4/forward_backward_v2.png  used on input line 167.
+(pdftex.def)             Requested size: 416.27489pt x 208.13744pt.
+)
 \tf@ptc=\write7
 \openout7 = `main.ptc'.
 
- [33]
+ [33 </home/ytcdata/em_theory/Pictures/ch4/forward_backward_v2.png>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 114.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 114.
  (/home/ytcdata/em_theory/main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 114.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 114.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 86FE8F32F6BE0179FBE716C53F317ED1;1861.
+(rerunfilecheck)             Checksum: E993FFF0A40DAAB632FE85C238175AF9;1915.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29502 strings out of 483107
- 552474 string characters out of 5964630
- 1349622 words of memory out of 5000000
- 43599 multiletter control sequences out of 15000+600000
+ 29505 strings out of 483107
+ 552482 string characters out of 5964630
+ 1349645 words of memory out of 5000000
+ 43601 multiletter control sequences out of 15000+600000
  640677 words of font info for 207 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  63i,19n,62p,877b,2053s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/avantgar/uagd8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/avantgar/uagk8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /home/ytcdata/em_theory/main.pdf (33 pages, 15688912 bytes).
+Output written on /home/ytcdata/em_theory/main.pdf (33 pages, 15725616 bytes).
 PDF statistics:
- 673 PDF objects out of 1000 (max. 8388607)
- 524 compressed objects within 6 object streams
- 204 named destinations out of 1000 (max. 500000)
- 49092 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 680 PDF objects out of 1000 (max. 8388607)
+ 529 compressed objects within 6 object streams
+ 205 named destinations out of 1000 (max. 500000)
+ 49100 words of extra memory for PDF output out of 51595 (max. 10000000)
 

@@ -114,34 +114,31 @@ Therefore
         \end{bmatrix}\\
         &=
         \begin{bmatrix}
-                c_1 & c_2 & \cdots & c_{72}
-        \end{bmatrix}   
+                e^{-\lambda_{1}\Delta t} \left< \hat{\alpha}_{t_1} | \psi_1 \right> &
+                e^{-\lambda_{2}\Delta t} \left< \hat{\alpha}_{t_1} | \psi_2 \right> & 
+                \cdots &
+                e^{-\lambda_{72}\Delta t} \left< \hat{\alpha}_{t_1} | \psi_{72} \right> 
+        \end{bmatrix}\\ 
+        &=
+        \begin{bmatrix}
+                \left< \hat{\alpha}_{t_1} | \psi_1 \right> &
+                e^{-\lambda_{2}\Delta t} \left< \hat{\alpha}_{t_1} | \psi_2 \right> & 
+                \cdots &
+                e^{-\lambda_{72}\Delta t} \left< \hat{\alpha}_{t_1} | \psi_{72} \right> 
+        \end{bmatrix}
 \end{align*}
 The probability meaning is 
 \begin{align*}
-        p(x, \Delta t | x_1, y_1) = p(x, \Delta t | x_1) = (\left< \hat{\alpha}_{t_1}| e^{-\textbf{H}\Delta t} | x \right>)^2
+        (\left< \hat{\alpha}_{t_1}| e^{-\textbf{H}\Delta t} | x \right>)^2 = F(x_2) = p(x_1|y_1) p(x_2|x_1) 
 \end{align*}
-In the above, we use the property of conditional independence. \\
-Because 
-\begin{align*}
-        \int p(x, \Delta t | x_1) dx \approx \sum_{k=1}^{193}w(x_k)(\left< \hat{\alpha}_{t_1}| e^{-\textbf{H}\Delta t} | x \right>)^2= 1
-\end{align*}
-Therefore
-\begin{align*}
-        \norm{\left< \hat{\alpha}_{t_1}| e^{-\textbf{H}\Delta t} \right|}^2 = c_1^2 + c_2^2 + \cdots + c_{72}^2 = 1
-\end{align*}
-and 
-\begin{align*}
-        c_1 = \sqrt{1 - (c_2^2 + \cdots + c_{72}^2)} = \sqrt{1- \sum_{i=2}^{72}c_i^2}
-\end{align*}
-Now, let us see the extreme case, when $\Delta t = 10^{-11}$ s
-\begin{center}
-        \includegraphics[scale=0.4]{ch2/alphat1_expdt_extremecase.png}   
-\end{center}
-and the normal case in our simulation, when $\Delta t = 10^{-9}$ s 
+The case in our simulation, when $\Delta t = 10^{-9}$ s 
 \begin{center}
         \includegraphics[scale=0.4]{ch2/alphat1_expdt_normalcase.png}   
 \end{center}
+In the right-bottom figure
+\begin{align*}
+        \int p(x_1|y_1)p(x_2|x_1)dx_2 = 0.326
+\end{align*}
 \end{definition}
 
 \subsection{alpha-t2}
@@ -181,7 +178,7 @@ where
 \begin{definition}[$\left< \hat{\alpha}_{t_2}| e^{-\textbf{H}\Delta t} \right|$]
 The probability meaning is 
 \begin{align*}
-        p(x, \Delta t | x_2, y_2) = p(x, \Delta t | x_2) = p(x_3|x_2) = (\left< \hat{\alpha}_{t_2}| e^{-\textbf{H}\Delta t} | x \right>)^2
+        (\left< \hat{\alpha}_{t_2}| e^{-\textbf{H}\Delta t} | x_3 \right>)^2 = \int p(x_2 | y_1, y_2) p(x_3|x_2) dx_3  
 \end{align*}
 \begin{center}
         \includegraphics[scale=0.4]{ch2/alphat2_expdt.png}   
@@ -215,7 +212,7 @@ where
 \begin{definition}[$\left< \hat{\alpha}_{t_3}| e^{-\textbf{H}\Delta t} \right|$]
 The probability meaning is 
 \begin{align*}
-        p(x_4|x_3) = (\left< \hat{\alpha}_{t_3}| e^{-\textbf{H}\Delta t} | x_4 \right>)^2
+        (\left< \hat{\alpha}_{t_3}| e^{-\textbf{H}\Delta t} | x_4 \right>)^2 = \int p(x_3 | y_1, y_2, y_3) p(x_4|x_3) dx_4  
 \end{align*}
 \begin{center}
         \includegraphics[scale=0.4]{ch2/alphat3_expdt.png}   
