@@ -166,3 +166,29 @@ Therefore, the maximization problem becomes to solve
 \begin{center}
     \includegraphics[scale=0.36]{ch4/forward_backward_v2.png}   
 \end{center}
+
+\subsection{Initial Guess Test}
+\begin{center}
+    \includegraphics[scale=0.55]{ch4/initial_guess_test.pdf}   
+\end{center}
+
+\subsection{Troubleshooting: Double Peak}
+\begin{center}
+    \includegraphics[scale=0.55]{ch4/double_peak_problem.pdf}   
+\end{center}
+\subsubsection{Step 1: Detect abrupt change}
+\begin{itemize}
+    \item Use finite difference to get $\frac{d p^{[k]}_{eq}(x)}{dx}$ and $\frac{d^2 p^{[k]}_{eq}(x)}{dx^2}$
+    \item If $|\frac{d^2 p_{eq}(x)}{dx^2}|>1$, put the point into the list storing "change points"
+    \item If $\text{Number}(\text{Change points}) > 0$, do smoothing. Else: no smooth 
+\end{itemize}
+\begin{center}
+    \includegraphics[scale=0.4]{ch4/double_peak_problem_derivative.pdf}   
+\end{center}
+\begin{center}
+    \includegraphics[scale=0.5]{ch4/abrupt_detect.pdf}   
+\end{center}
+
+\subsubsection{Step 2: Smoothing}
+BBB
+\subsubsection{Result}
