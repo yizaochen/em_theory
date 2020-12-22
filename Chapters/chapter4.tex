@@ -189,6 +189,23 @@ Therefore, the maximization problem becomes to solve
     \includegraphics[scale=0.5]{ch4/abrupt_detect.pdf}   
 \end{center}
 
-\subsubsection{Step 2: Smoothing}
-BBB
+\subsubsection{Step 2: The cubic smoothing spline}
+\begin{definition}[Smoothing Spline]
+    Let  $\{x_{i},Y_{i}:i=1,\dots ,n\}$ be a set of observations, modeled by the relation $\{Y_{i}=f(x_{i})+\epsilon _{i}\}$ where the $\epsilon _{i}$ are independen, zero mean random variables (usually assumed to have constant variance). The cubic smoothing spline estimate $\hat{f}$ of the function $f$ is defined to be the minimizer (over the class of twice differentiable functions) of
+    \begin{equation}
+         \sum _{i=1}^{n}\{Y_{i}-{\hat {f}}(x_{i})\}^{2}+\lambda \int {\hat {f}}''(x)^{2}\,dx
+    \end{equation}
+    \begin{itemize}
+        \item $\lambda \geq 0$ is a smoothing parameter, controlling the trade-off between fidelity to the data and roughness of the function estimate. This is often estimated by generalized cross-validation, or by restricted marginal likelihood (REML) which exploits the link between spline smoothing and Bayesian estimation (the smoothing penalty can be viewed as being induced by a prior on the $f$.
+        \item As $ \lambda \to 0$, the smoothing spline converges to the interpolating spline.
+        \item As $\lambda \to \infty$(infinite smoothing), the roughness penalty becomes paramount and the estimate converges to a linear least squares estimate.
+    \end{itemize}
+\end{definition}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/double_peak_smooth_afterEM.pdf}   
+\end{center}
+
 \subsubsection{Result}
+\begin{center}
+    \includegraphics[scale=0.6]{ch4/aftersmooth_result.pdf}   
+\end{center}

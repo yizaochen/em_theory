@@ -644,6 +644,12 @@ INPUT /home/ytcdata/em_theory/Pictures/ch4/double_peak_problem_derivative.pdf
 INPUT /home/ytcdata/em_theory/Pictures/ch4/abrupt_detect.pdf
 INPUT /home/ytcdata/em_theory/Pictures/ch4/abrupt_detect.pdf
 INPUT /home/ytcdata/em_theory/Pictures/ch4/abrupt_detect.pdf
+INPUT /home/ytcdata/em_theory/Pictures/ch4/double_peak_smooth_afterEM.pdf
+INPUT /home/ytcdata/em_theory/Pictures/ch4/double_peak_smooth_afterEM.pdf
+INPUT /home/ytcdata/em_theory/Pictures/ch4/double_peak_smooth_afterEM.pdf
+INPUT /home/ytcdata/em_theory/Pictures/ch4/aftersmooth_result.pdf
+INPUT /home/ytcdata/em_theory/Pictures/ch4/aftersmooth_result.pdf
+INPUT /home/ytcdata/em_theory/Pictures/ch4/aftersmooth_result.pdf
 OUTPUT /home/ytcdata/em_theory/main.ptc
 INPUT /home/ytcdata/em_theory/main.aux
 INPUT /home/ytcdata/em_theory/main.out

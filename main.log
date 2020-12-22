@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.4)  21 DEC 2020 22:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.10.4)  22 DEC 2020 18:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1712,11 +1712,29 @@ pdfTeX warning: pdflatex (file /home/ytcdata/em_theory/Pictures/ch4/double_peak_
 > </home/ytcdata/em_theory/Pictures/ch4/abrupt_detect.pdf
 
 pdfTeX warning: pdflatex (file /home/ytcdata/em_theory/Pictures/ch4/abrupt_detect.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->])
+>]
+Package mdframed Info: mdframed works in twoside mode on input line 193.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 193.
+<Pictures/ch4/double_peak_smooth_afterEM.pdf, id=1178, 867.24pt x 289.08pt>
+File: Pictures/ch4/double_peak_smooth_afterEM.pdf Graphic file (type pdf)
+<use Pictures/ch4/double_peak_smooth_afterEM.pdf>
+Package pdftex.def Info: Pictures/ch4/double_peak_smooth_afterEM.pdf  used on input line 205.
+(pdftex.def)             Requested size: 390.2544pt x 130.0848pt.
+<Pictures/ch4/aftersmooth_result.pdf, id=1179, 578.16pt x 216.81pt>
+File: Pictures/ch4/aftersmooth_result.pdf Graphic file (type pdf)
+<use Pictures/ch4/aftersmooth_result.pdf>
+Package pdftex.def Info: Pictures/ch4/aftersmooth_result.pdf  used on input line 210.
+(pdftex.def)             Requested size: 346.89867pt x 130.08699pt.
+)
 \tf@ptc=\write7
 \openout7 = `main.ptc'.
 
- [36]
+ [36 </home/ytcdata/em_theory/Pictures/ch4/double_peak_smooth_afterEM.pdf> </home/ytcdata/em_theory/Pictures/ch4/aftersmooth_result.pdf
+
+pdfTeX warning: pdflatex (file /home/ytcdata/em_theory/Pictures/ch4/aftersmooth_result.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 114.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 114.
  (/home/ytcdata/em_theory/main.aux)
@@ -1729,18 +1747,18 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29539 strings out of 483107
- 553573 string characters out of 5964630
- 1349645 words of memory out of 5000000
- 43623 multiletter control sequences out of 15000+600000
- 640677 words of font info for 207 fonts, out of 8000000 for 9000
+ 29563 strings out of 483107
+ 554210 string characters out of 5964630
+ 1349670 words of memory out of 5000000
+ 43634 multiletter control sequences out of 15000+600000
+ 641067 words of font info for 213 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  63i,19n,62p,877b,2053s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/avantgar/uagd8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/avantgar/uagk8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /home/ytcdata/em_theory/main.pdf (36 pages, 16212614 bytes).
+Output written on /home/ytcdata/em_theory/main.pdf (36 pages, 16294817 bytes).
 PDF statistics:
- 1277 PDF objects out of 1440 (max. 8388607)
- 928 compressed objects within 10 object streams
- 213 named destinations out of 1000 (max. 500000)
- 49136 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 1350 PDF objects out of 1440 (max. 8388607)
+ 977 compressed objects within 10 object streams
+ 215 named destinations out of 1000 (max. 500000)
+ 49146 words of extra memory for PDF output out of 51595 (max. 10000000)
 
