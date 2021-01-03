@@ -209,3 +209,47 @@ Therefore, the maximization problem becomes to solve
 \begin{center}
     \includegraphics[scale=0.6]{ch4/aftersmooth_result.pdf}   
 \end{center}
+
+\section{Optimize diffusion coefficient D}
+Here, we use the following simulation data to understand the procedure of updating D.
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/Simu_for_EM.png}   
+\end{center}
+We will fix $p_{eq}^{[k]}$ as the real answer $p_{eq}$, and change $D$ to see the effect to eigenvalues $\lambda_i$ and log-likelihood $l[\theta]$
+
+\subsection{Hamiltonian and its eigenvalues scale linearly with diffusion coefficient}
+\begin{align*}
+    \frac{\partial \rho(x,t)}{\partial t} &= -\bm{H}^0 \rho(x,t), \\
+    \bm{H}^0 &= -D\nabla^2  + V_{\rm eff}(x), \\
+    V_{\rm eff}  &= \frac{DF'(x)}{2} + \frac{DF^2(x)}{4}.
+\end{align*}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/eigenvalue_linear_with_D.pdf}   
+\end{center}
+I only show the first six eigenvalues, all the rest eigenvalues is linear scaling with $D$.
+
+\subsection{Log-likelihood as a function of D}
+First, I try 
+\begin{align*}
+    D = 10^{m}~\si{\angstrom}^{2}s^{-1}\text{   where } m=-2,...,11
+\end{align*}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/D_loglikelihood_broad_search.pdf}   
+\end{center}
+Then, focus on the range from $1 \times 10^{8}$ to $9 \times 10^{9}$
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/D_loglikelihood_middle_search.pdf}   
+\end{center}
+At last, I focus on the range from $1.1 \times 10^{9}$ to $9.9 \times 10^{9}$
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/D_loglikelihood_detail_search.pdf}   
+\end{center}
+
+\subsection{Unconstrained Minimizer Test}
+First try, 
+\begin{itemize}
+    \item Method: LBFGS
+    \item How many times call alpha-beta: 26 (so inefficient)
+    \item Converged log-likelihood: 29970 (Correct)
+    \item Converged D: $2.46 \times D_{ans}$ 
+\end{itemize}

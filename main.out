@@ -29,3 +29,7 @@
 \BOOKMARK [1][-]{section.4.4}{EM Test}{chapter.4}% 29
 \BOOKMARK [2][-]{subsection.4.4.1}{Initial Guess Test}{section.4.4}% 30
 \BOOKMARK [2][-]{subsection.4.4.2}{Troubleshooting: Double Peak}{section.4.4}% 31
+\BOOKMARK [1][-]{section.4.5}{Optimize diffusion coefficient D}{chapter.4}% 32
+\BOOKMARK [2][-]{subsection.4.5.1}{Hamiltonian and its eigenvalues scale linearly with diffusion coefficient}{section.4.5}% 33
+\BOOKMARK [2][-]{subsection.4.5.2}{Log-likelihood as a function of D}{section.4.5}% 34
+\BOOKMARK [2][-]{subsection.4.5.3}{Unconstrained Minimizer Test}{section.4.5}% 35

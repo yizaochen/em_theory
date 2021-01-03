@@ -1,71 +1,41 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {english}{}
-\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Langevin Dynamics}{5}{chapter.1}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Basic Equation}{5}{section.1.1}%
-\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {2}Bayesian Inference Framework}{7}{chapter.2}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.1}Graphical Model}{7}{section.2.1}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.2}Forward algorithm}{7}{section.2.2}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.1}Probability Meaning}{7}{subsection.2.2.1}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.2}alpha-t0}{8}{subsection.2.2.2}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.3}alpha-t1}{9}{subsection.2.2.3}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.4}alpha-t2}{11}{subsection.2.2.4}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.5}alpha-t3}{12}{subsection.2.2.5}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.6}alpha-t4}{14}{subsection.2.2.6}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.3}Scaling Factor}{15}{section.2.3}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.4}Backward algorithm}{17}{section.2.4}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4.1}Probability Meaning}{17}{subsection.2.4.1}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4.2}beta-4}{17}{subsection.2.4.2}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4.3}beta-3}{17}{subsection.2.4.3}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4.4}beta-2}{19}{subsection.2.4.4}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.4.5}beta-1}{20}{subsection.2.4.5}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.5}Posterior probability}{21}{section.2.5}%
-\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Spectral Finite Element Method}{23}{chapter.3}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.1}Domain of sFEM}{23}{section.3.1}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}Weight function, orthogonality and norm}{24}{section.3.2}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.3}Diagonalization of the operator}{24}{section.3.3}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.4}Photon operator and Emission probability}{25}{section.3.4}%
-\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}EM Algorithm}{29}{chapter.4}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.1}The General EM Algorithm}{29}{section.4.1}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.2}The expected log of the complete likelihood}{30}{section.4.2}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.3}Update the equilibrium probability density}{32}{section.4.3}%
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.4}EM Test}{33}{section.4.4}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.4.1}Initial Guess Test}{34}{subsection.4.4.1}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.4.2}Troubleshooting: Double Peak}{35}{subsection.4.4.2}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Step 1: Detect abrupt change}{35}{section*.2}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Step 2: The cubic smoothing spline}{36}{section*.3}%
-\defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Result}{36}{section*.4}%
+\contentsline {section}{\numberline {4.5}Optimize diffusion coefficient D}{36}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Hamiltonian and its eigenvalues scale linearly with diffusion coefficient}{37}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Log-likelihood as a function of D}{37}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Unconstrained Minimizer Test}{38}{subsection.4.5.3}%
 \contentsfinish 
