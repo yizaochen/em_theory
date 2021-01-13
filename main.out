@@ -33,3 +33,7 @@
 \BOOKMARK [2][-]{subsection.4.5.1}{Hamiltonian and its eigenvalues scale linearly with diffusion coefficient}{section.4.5}% 33
 \BOOKMARK [2][-]{subsection.4.5.2}{Log-likelihood as a function of D}{section.4.5}% 34
 \BOOKMARK [2][-]{subsection.4.5.3}{Unconstrained Minimizer Test}{section.4.5}% 35
+\BOOKMARK [1][-]{section.4.6}{Complete EM}{chapter.4}% 36
+\BOOKMARK [2][-]{subsection.4.6.1}{Initial Guess by Gaussian Kernel Density Estimation}{section.4.6}% 37
+\BOOKMARK [2][-]{subsection.4.6.2}{Algorithm}{section.4.6}% 38
+\BOOKMARK [2][-]{subsection.4.6.3}{Results}{section.4.6}% 39

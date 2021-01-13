@@ -234,7 +234,7 @@ First, I try
     D = 10^{m}~\si{\angstrom}^{2}s^{-1}\text{   where } m=-2,...,11
 \end{align*}
 \begin{center}
-    \includegraphics[scale=0.45]{ch4/D_loglikelihood_broad_search.pdf}   
+    \includegraphics[scale=0.45]{ch4/D_loglikelihood_broad_search.pdf} 
 \end{center}
 Then, focus on the range from $1 \times 10^{8}$ to $9 \times 10^{9}$
 \begin{center}
@@ -253,3 +253,46 @@ First try,
     \item Converged log-likelihood: 29970 (Correct)
     \item Converged D: $2.46 \times D_{ans}$ 
 \end{itemize}
+
+\section{Complete EM}
+\subsection{Initial Guess by Gaussian Kernel Density Estimation}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/Gaussian_Kde_harmonic_well.pdf} 
+\end{center}
+
+\subsection{Algorithm}
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \KwResult{$p^{k}_{\rm eq}$, $D^k$}
+     initialize $p^0_{\rm eq}$ as Gaussian KDE \;
+     initialize $D^0=\frac{k_B T}{6\pi \eta a}$\;
+     
+     \While{$(\ell[\theta^k] - \ell[\theta^{k-1}] > \num{1e-1})$ \& $(k < k_{\text{max}})$}{
+       Eigen-decompose the Hermitian $\bm H$ for $\Psi$ and $\Lambda$\;
+       Evaluate $\ell [\theta^k] = \sum_{\tau} |\alpha_{\tau}|$ via normalization\;
+       Infer the latent states $\langle \alpha(t)|,|\beta(t) \rangle$\;
+       Collect statistics of $\mathbb{E}^k_{X|Y}[a_ib_j] = \sum_{\tau}\Gamma^{\tau}_{ij}$\;
+       Update $p_{\rm{eq}}^{k+1} = p^k_{\rm{eq}}(x) \sum_{ij} \mathbb{E}^k_{X|Y}[a_ib_j] \phi_i(x)\phi_j(x) $\;
+       %
+      \If{$k~\%~ 5 == 0$}{
+       Detect abrupt change in $p^{k+1}_{\rm eq}$\;
+       \If{abrupt change exists}{
+           $p^{k+1}_{\rm eq}$ = Smooth($p^{k+1}_{\rm eq}$) 
+       }
+       Line search $D^{k+1} = \argmax_D \ell[p^{k+1}_{\rm eq},D]$\;
+       }
+       k = k + 1\;
+     }
+     \caption{Expectation-Maximization Statistical Learning for $F(x)$ and $D$}
+\end{algorithm}
+
+\subsection{Results}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/em_p0_avg_50_pref_xavg_50.pdf} 
+\end{center}
+
+In the following case, $l^{[100]}-l^{[99]}=3.736$
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/em_p0_avg_45_pref_xavg_50.pdf} 
+\end{center}
+

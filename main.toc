@@ -38,4 +38,8 @@
 \contentsline {subsection}{\numberline {4.5.1}Hamiltonian and its eigenvalues scale linearly with diffusion coefficient}{37}{subsection.4.5.1}%
 \contentsline {subsection}{\numberline {4.5.2}Log-likelihood as a function of D}{37}{subsection.4.5.2}%
 \contentsline {subsection}{\numberline {4.5.3}Unconstrained Minimizer Test}{38}{subsection.4.5.3}%
+\contentsline {section}{\numberline {4.6}Complete EM}{39}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Initial Guess by Gaussian Kernel Density Estimation}{39}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Algorithm}{39}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Results}{40}{subsection.4.6.3}%
 \contentsfinish 
