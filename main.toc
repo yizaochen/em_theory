@@ -2,6 +2,8 @@
 \babel@toc {english}{}
 \contentsline {chapter}{\numberline {1}Langevin Dynamics}{5}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Basic Equation}{5}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}The most disordered dynamics as reference}{5}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Harmonic Well}{5}{subsection.1.1.2}%
 \contentsline {chapter}{\numberline {2}Bayesian Inference Framework}{7}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Graphical Model}{7}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Forward algorithm}{7}{section.2.2}%
@@ -37,9 +39,10 @@
 \contentsline {section}{\numberline {4.5}Optimize diffusion coefficient D}{36}{section.4.5}%
 \contentsline {subsection}{\numberline {4.5.1}Hamiltonian and its eigenvalues scale linearly with diffusion coefficient}{37}{subsection.4.5.1}%
 \contentsline {subsection}{\numberline {4.5.2}Log-likelihood as a function of D}{37}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}Unconstrained Minimizer Test}{38}{subsection.4.5.3}%
 \contentsline {section}{\numberline {4.6}Complete EM}{39}{section.4.6}%
 \contentsline {subsection}{\numberline {4.6.1}Initial Guess by Gaussian Kernel Density Estimation}{39}{subsection.4.6.1}%
 \contentsline {subsection}{\numberline {4.6.2}Algorithm}{39}{subsection.4.6.2}%
-\contentsline {subsection}{\numberline {4.6.3}Results}{40}{subsection.4.6.3}%
+\contentsline {subsection}{\numberline {4.6.3}The data strucutres for storing results}{40}{subsection.4.6.3}%
+\contentsline {subsection}{\numberline {4.6.4}Results}{40}{subsection.4.6.4}%
+\contentsline {section}{\numberline {4.7}Regularization by using Trajectory Entropy}{40}{section.4.7}%
 \contentsfinish 

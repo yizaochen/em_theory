@@ -245,15 +245,6 @@ At last, I focus on the range from $1.1 \times 10^{9}$ to $9.9 \times 10^{9}$
     \includegraphics[scale=0.45]{ch4/D_loglikelihood_detail_search.pdf}   
 \end{center}
 
-\subsection{Unconstrained Minimizer Test}
-First try, 
-\begin{itemize}
-    \item Method: LBFGS
-    \item How many times call alpha-beta: 26 (so inefficient)
-    \item Converged log-likelihood: 29970 (Correct)
-    \item Converged D: $2.46 \times D_{ans}$ 
-\end{itemize}
-
 \section{Complete EM}
 \subsection{Initial Guess by Gaussian Kernel Density Estimation}
 \begin{center}
@@ -286,13 +277,33 @@ First try,
      \caption{Expectation-Maximization Statistical Learning for $F(x)$ and $D$}
 \end{algorithm}
 
+\subsection{The data strucutres for storing results}
+\begin{align*}
+    \mathrm{p\_container} &= 
+    \begin{bmatrix}
+        p^{0}_{\rm eq} \\ p^{1}_{\rm eq} \\ \vdots \\ p^{k}_{\rm eq}
+    \end{bmatrix}\\
+    \mathrm{D\_records} &= 
+    \begin{bmatrix}
+        D^{0} \\ D^{1} \\ \vdots \\ D^{k}
+    \end{bmatrix}\\
+    \mathrm{log\_likelihood\_records} &= 
+    \begin{bmatrix}
+        \ell[\theta^{0}] \\ \ell[\theta^{1}] \\ \vdots \\ \ell[\theta^{k}]
+    \end{bmatrix}   
+\end{align*}
+
 \subsection{Results}
 \begin{center}
-    \includegraphics[scale=0.45]{ch4/em_p0_avg_50_pref_xavg_50.pdf} 
+    \includegraphics[scale=0.45]{ch4/em_p0_kde_pref_xavg_50.pdf} 
 \end{center}
 
-In the following case, $l^{[100]}-l^{[99]}=3.736$
-\begin{center}
-    \includegraphics[scale=0.45]{ch4/em_p0_avg_45_pref_xavg_50.pdf} 
-\end{center}
-
+\section{Regularization by using Trajectory Entropy}
+The proposed statistical learning problem of Langevin dynamics from smFRET data is naturally underdetermined because we attempt to extract a continuous profile from a finite number of photons. A Bayesian prior is thus required to break the degeneracy in the parameter set. With the prior, the posterior function, $p(\theta | \textbf{y})$, for parameter optimization becomes
+\begin{equation}
+    p(\theta | \textbf{y}) = \frac{p(\textbf{y}|\theta) p(\theta)}{p(\textbf{y})}
+\end{equation}
+A criterion for choosing the prior is to guide the optimization toward $F(x)$ profiles that imply the least amount information of dynamics. The goal is to prevent the statistical learning from overfitting and overinterpreting the measured data. As such, we selet the prior based on maximum trajectory entropy. For Langevin dynamics at equilibrium, the trajectory entropy is 
+\begin{equation}
+    \textbf{S}[F(x), D; D] = S_{\rm eq} - t_{\rm obs} \frac{D}{4}\left< F^2(x)\right>
+\end{equation}
