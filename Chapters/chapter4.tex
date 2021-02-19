@@ -307,3 +307,16 @@ A criterion for choosing the prior is to guide the optimization toward $F(x)$ pr
 \begin{equation}
     \textbf{S}[F(x), D; D] = S_{\rm eq} - t_{\rm obs} \frac{D}{4}\left< F^2(x)\right>
 \end{equation}
+In Kevin's EM 2013 JPCB paper,
+\begin{align}
+    D &= 500~~\text{s}^{-1} \\
+    \eta_{F} &= 2 \times 10^{-7} \\ 
+    \eta_{F}D &= 0.0001
+\end{align}
+Therefore, when including the prior for updating $p_{\rm eq}$
+\begin{align*}
+    p_{\rm eq}^{k+1}(x) &= \left(\mathbb{E}^k_{X|Y} \left[\delta(x-X) \right]\right)^{1/(1+\eta_FD)} \\
+    &= \left(\mathbb{E}^k_{X|Y} \left[\delta(x-X) \right]\right)^{1/(1+0.0001)} \\
+    &= \left(\mathbb{E}^k_{X|Y} \left[\delta(x-X) \right]\right)^{1/(1.0001)}
+\end{align*}
+I think the regularization has no real effect.
