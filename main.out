@@ -41,3 +41,21 @@
 \BOOKMARK [2][-]{subsection.4.6.3}{The data strucutres for storing results}{section.4.6}% 41
 \BOOKMARK [2][-]{subsection.4.6.4}{Results}{section.4.6}% 42
 \BOOKMARK [1][-]{section.4.7}{Regularization by using Trajectory Entropy}{chapter.4}% 43
+\BOOKMARK [0][-]{chapter.5}{Double Well}{}% 44
+\BOOKMARK [1][-]{section.5.1}{Building double well by analytical form}{chapter.5}% 45
+\BOOKMARK [2][-]{subsection.5.1.1}{Analytical form of potential}{section.5.1}% 46
+\BOOKMARK [2][-]{subsection.5.1.2}{Eigenvector}{section.5.1}% 47
+\BOOKMARK [1][-]{section.5.2}{Diagonalization of the operator}{chapter.5}% 48
+\BOOKMARK [1][-]{section.5.3}{Forward algorithm}{chapter.5}% 49
+\BOOKMARK [2][-]{subsection.5.3.1}{Probability Meaning}{section.5.3}% 50
+\BOOKMARK [2][-]{subsection.5.3.2}{alpha-t0}{section.5.3}% 51
+\BOOKMARK [2][-]{subsection.5.3.3}{alpha-t1}{section.5.3}% 52
+\BOOKMARK [2][-]{subsection.5.3.4}{alpha-t2}{section.5.3}% 53
+\BOOKMARK [2][-]{subsection.5.3.5}{alpha-t3}{section.5.3}% 54
+\BOOKMARK [2][-]{subsection.5.3.6}{alpha-t4}{section.5.3}% 55
+\BOOKMARK [1][-]{section.5.4}{Backward algorithm}{chapter.5}% 56
+\BOOKMARK [2][-]{subsection.5.4.1}{Probability Meaning}{section.5.4}% 57
+\BOOKMARK [2][-]{subsection.5.4.2}{beta-4}{section.5.4}% 58
+\BOOKMARK [2][-]{subsection.5.4.3}{beta-3}{section.5.4}% 59
+\BOOKMARK [2][-]{subsection.5.4.4}{beta-2}{section.5.4}% 60
+\BOOKMARK [2][-]{subsection.5.4.5}{beta-1}{section.5.4}% 61
