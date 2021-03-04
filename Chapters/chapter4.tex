@@ -320,3 +320,47 @@ Therefore, when including the prior for updating $p_{\rm eq}$
     &= \left(\mathbb{E}^k_{X|Y} \left[\delta(x-X) \right]\right)^{1/(1.0001)}
 \end{align*}
 I think the regularization has no real effect.
+
+\section{Double Well}
+\subsection{Case 1: 10000 photons}
+$\Delta t = 10^{-9}~\text{s}$
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/simu_doublewell_10000photons.png} 
+\end{center}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/em_p0_kde_pref_doublewell_10000photons.pdf} 
+\end{center}
+
+\subsection{Case 2: 20000 photons}
+$\Delta t = 10^{-9}~\text{s}$
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/simu_doublewell_20000photons.png} 
+\end{center}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/em_p0_kde_pref_doublewell_20000photons.pdf} 
+\end{center}
+
+\subsection{Gaussian mixture model}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/gmm_doublewell_1.png} 
+\end{center}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/em_p0_kde_pref_gmm_doublewell_1.pdf} 
+\end{center}
+
+\section{Triple Well}
+\subsection{Gaussian mixture model: 10000 photons}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/gmm_triplewell_1.png} 
+\end{center}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/em_p0_kde_pref_gmm_triplewell_1.pdf} 
+\end{center}
+
+\subsection{Gaussian mixture model: 50000 photons}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/gmm_triplewell_2.png} 
+\end{center}
+\begin{center}
+    \includegraphics[scale=0.45]{ch4/em_p0_kde_pref_gmm_triplewell_2.pdf} 
+\end{center}

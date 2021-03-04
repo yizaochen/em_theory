@@ -25,37 +25,29 @@
 \BOOKMARK [1][-]{section.3.2}{Weight function, orthogonality and norm}{chapter.3}% 25
 \BOOKMARK [1][-]{section.3.3}{Diagonalization of the operator}{chapter.3}% 26
 \BOOKMARK [1][-]{section.3.4}{Photon operator and Emission probability}{chapter.3}% 27
-\BOOKMARK [0][-]{chapter.4}{EM Algorithm}{}% 28
-\BOOKMARK [1][-]{section.4.1}{The General EM Algorithm}{chapter.4}% 29
-\BOOKMARK [1][-]{section.4.2}{The expected log of the complete likelihood}{chapter.4}% 30
-\BOOKMARK [1][-]{section.4.3}{Update the equilibrium probability density}{chapter.4}% 31
-\BOOKMARK [1][-]{section.4.4}{EM Test}{chapter.4}% 32
-\BOOKMARK [2][-]{subsection.4.4.1}{Initial Guess Test}{section.4.4}% 33
-\BOOKMARK [2][-]{subsection.4.4.2}{Troubleshooting: Double Peak}{section.4.4}% 34
-\BOOKMARK [1][-]{section.4.5}{Optimize diffusion coefficient D}{chapter.4}% 35
-\BOOKMARK [2][-]{subsection.4.5.1}{Hamiltonian and its eigenvalues scale linearly with diffusion coefficient}{section.4.5}% 36
-\BOOKMARK [2][-]{subsection.4.5.2}{Log-likelihood as a function of D}{section.4.5}% 37
-\BOOKMARK [1][-]{section.4.6}{Complete EM}{chapter.4}% 38
-\BOOKMARK [2][-]{subsection.4.6.1}{Initial Guess by Gaussian Kernel Density Estimation}{section.4.6}% 39
-\BOOKMARK [2][-]{subsection.4.6.2}{Algorithm}{section.4.6}% 40
-\BOOKMARK [2][-]{subsection.4.6.3}{The data strucutres for storing results}{section.4.6}% 41
-\BOOKMARK [2][-]{subsection.4.6.4}{Results}{section.4.6}% 42
-\BOOKMARK [1][-]{section.4.7}{Regularization by using Trajectory Entropy}{chapter.4}% 43
-\BOOKMARK [0][-]{chapter.5}{Double Well}{}% 44
-\BOOKMARK [1][-]{section.5.1}{Building double well by analytical form}{chapter.5}% 45
-\BOOKMARK [2][-]{subsection.5.1.1}{Analytical form of potential}{section.5.1}% 46
-\BOOKMARK [2][-]{subsection.5.1.2}{Eigenvector}{section.5.1}% 47
-\BOOKMARK [1][-]{section.5.2}{Diagonalization of the operator}{chapter.5}% 48
-\BOOKMARK [1][-]{section.5.3}{Forward algorithm}{chapter.5}% 49
-\BOOKMARK [2][-]{subsection.5.3.1}{Probability Meaning}{section.5.3}% 50
-\BOOKMARK [2][-]{subsection.5.3.2}{alpha-t0}{section.5.3}% 51
-\BOOKMARK [2][-]{subsection.5.3.3}{alpha-t1}{section.5.3}% 52
-\BOOKMARK [2][-]{subsection.5.3.4}{alpha-t2}{section.5.3}% 53
-\BOOKMARK [2][-]{subsection.5.3.5}{alpha-t3}{section.5.3}% 54
-\BOOKMARK [2][-]{subsection.5.3.6}{alpha-t4}{section.5.3}% 55
-\BOOKMARK [1][-]{section.5.4}{Backward algorithm}{chapter.5}% 56
-\BOOKMARK [2][-]{subsection.5.4.1}{Probability Meaning}{section.5.4}% 57
-\BOOKMARK [2][-]{subsection.5.4.2}{beta-4}{section.5.4}% 58
-\BOOKMARK [2][-]{subsection.5.4.3}{beta-3}{section.5.4}% 59
-\BOOKMARK [2][-]{subsection.5.4.4}{beta-2}{section.5.4}% 60
-\BOOKMARK [2][-]{subsection.5.4.5}{beta-1}{section.5.4}% 61
+\BOOKMARK [1][-]{section.3.5}{Single Well}{chapter.3}% 28
+\BOOKMARK [1][-]{section.3.6}{Double Well}{chapter.3}% 29
+\BOOKMARK [1][-]{section.3.7}{Triple Well}{chapter.3}% 30
+\BOOKMARK [0][-]{chapter.4}{EM Algorithm}{}% 31
+\BOOKMARK [1][-]{section.4.1}{The General EM Algorithm}{chapter.4}% 32
+\BOOKMARK [1][-]{section.4.2}{The expected log of the complete likelihood}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.3}{Update the equilibrium probability density}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.4}{EM Test}{chapter.4}% 35
+\BOOKMARK [2][-]{subsection.4.4.1}{Initial Guess Test}{section.4.4}% 36
+\BOOKMARK [2][-]{subsection.4.4.2}{Troubleshooting: Double Peak}{section.4.4}% 37
+\BOOKMARK [1][-]{section.4.5}{Optimize diffusion coefficient D}{chapter.4}% 38
+\BOOKMARK [2][-]{subsection.4.5.1}{Hamiltonian and its eigenvalues scale linearly with diffusion coefficient}{section.4.5}% 39
+\BOOKMARK [2][-]{subsection.4.5.2}{Log-likelihood as a function of D}{section.4.5}% 40
+\BOOKMARK [1][-]{section.4.6}{Complete EM}{chapter.4}% 41
+\BOOKMARK [2][-]{subsection.4.6.1}{Initial Guess by Gaussian Kernel Density Estimation}{section.4.6}% 42
+\BOOKMARK [2][-]{subsection.4.6.2}{Algorithm}{section.4.6}% 43
+\BOOKMARK [2][-]{subsection.4.6.3}{The data strucutres for storing results}{section.4.6}% 44
+\BOOKMARK [2][-]{subsection.4.6.4}{Results}{section.4.6}% 45
+\BOOKMARK [1][-]{section.4.7}{Regularization by using Trajectory Entropy}{chapter.4}% 46
+\BOOKMARK [1][-]{section.4.8}{Double Well}{chapter.4}% 47
+\BOOKMARK [2][-]{subsection.4.8.1}{Case 1: 10000 photons}{section.4.8}% 48
+\BOOKMARK [2][-]{subsection.4.8.2}{Case 2: 20000 photons}{section.4.8}% 49
+\BOOKMARK [2][-]{subsection.4.8.3}{Gaussian mixture model}{section.4.8}% 50
+\BOOKMARK [1][-]{section.4.9}{Triple Well}{chapter.4}% 51
+\BOOKMARK [2][-]{subsection.4.9.1}{Gaussian mixture model: 10000 photons}{section.4.9}% 52
+\BOOKMARK [2][-]{subsection.4.9.2}{Gaussian mixture model: 50000 photons}{section.4.9}% 53
